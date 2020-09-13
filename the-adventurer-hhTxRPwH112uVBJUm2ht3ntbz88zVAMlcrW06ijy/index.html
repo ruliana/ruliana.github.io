@@ -18,13 +18,14 @@
              background-image: url("../images/the-adventurer.png");
          }
          #heading {
-             background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url("../images/the-adventurer.png");
+             /* background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url("../images/the-adventurer.png"); */
          }
          #banner {
              background-image: none
          }
          #cta {
              background-image: linear-gradient(rgba(206, 27, 40, 0.25), rgba(206, 27, 40, 0.25)), url("../images/the-adventurer.png");
+             background-position: top;
          }
          li {
              list-style-type: none;
@@ -74,8 +75,9 @@
         <!-- Nav -->
         <nav id="menu">
             <ul class="links">
-                <li><a href="../index.html">In&iacute;cio</a></li>
-                <li><a href="index.html">RPG em 300 palavras (pt-BR)</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../rpg-em-300-palavras/index.html">RPG em 300 palavras (pt-BR)</a></li>
+                <li><a href="./index.html">The Adventurer (Solo RPG)</a></li>
             </ul>
         </nav>
 
@@ -176,7 +178,7 @@
             <div class="inner">
                 <header class="special">
                     <h2>The Game</h2>
-                    <p> Below are buttons. Click on the first one and observe the card below it. Follow the game instructions.
+                    <p> Below are buttons. Click on the first one and observe the card below it. Remember to follow the steps in the rules.
                         <br />
                         Each time you draw a new location, the old card will be stored as you past.
                     </p>
@@ -385,12 +387,16 @@
          }
 
          function drawLocation() {
+
              // Moving cards
              if (currentLocationElement.innerHTML != "") {
                  pastLocationsElement.innerHTML =
                      `<section class="past-location"><div class="content"><h3>Past location</h3>`
+                     + `<h4>On your to way to&mldr;</h4>`
                      + `<ul>${currentLocationElement.innerHTML}</ul>`
+                     + `<h4>You've&mldr;</h4>`
                      + `<ul>${currentEventElement.innerHTML}</ul>`
+                     + `<h4>At arrival, You've found&mldr;</h4>`
                      + `<ul>${currentStuffElement.innerHTML}</ul>`
                      + `</div></section>`
                      + pastLocationsElement.innerHTML;
