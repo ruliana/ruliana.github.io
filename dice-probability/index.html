@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<!--
+     Industrious by TEMPLATED
+     templated.co @templatedco
+     Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+    <head>
+        <title>Dice Probability Tables</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="Dice probability tables for tabletop RPG creators" />
+        <meta name="keywords" content="RPG TTRPG tabletop dice probability table" />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+        <style>
+         body::before {
+             background-image: url("../images/dice.jpg");
+         }
+         #heading {
+             /* background-image: linear-gradient(rgba(17, 17, 17, 0.25), rgba(17, 17, 17, 0.25)), url("../images/dice.jpg"); */
+         }
+         #banner {
+             background-image: none
+         }
+         #cta {
+             background-image: linear-gradient(rgba(206, 27, 40, 0.25), rgba(206, 27, 40, 0.25)), url("../images/dice.jpg");
+             background-position: top;
+         }
+         li {
+             list-style-type: none;
+         }
+         #current-location {
+             border: 1px solid black;
+             background-color: white;
+             height: 400px;
+             width: 250px;
+             margin-bottom: 20px;
+             margin-right: 20px;
+             padding: 10px;
+         }
+         #past-locations {
+             width: 1080px;
+             display: flex;
+             flex-wrap: wrap;
+             flex-direction: row;
+         }
+         .past-location {
+             border: 1px solid black;
+             background-color: white;
+             height: 400px;
+             width: 250px;
+             margin-bottom: 20px;
+             margin-right: 20px;
+             padding: 10px;
+         }
+         .location-title {
+             font-weight: bold;
+         }
+         .event-title {
+             font-style: italic;
+         }
+        </style>
+    </head>
+    <body class="is-preload">
+
+        <!-- Header -->
+        <header id="header">
+            <a class="logo" href="../index.html">Stochastic Ideas</a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Nav -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../rpg-em-300-palavras/index.html">RPG em 300 palavras (pt-BR)</a></li>
+                <li><a href="../the-adventurer/index.html">The Adventurer (Solo RPG)</a></li>
+                <li><a href="../dice-probability/index.html">Dice Probabilities</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+                <h1>Dice probability tables</h1>
+                <p>for tabletop RPG creators</p>
+            </div>
+            <!-- <img src="../images/the-adventurer.png" /> -->
+        </section>
+
+        <!-- Highlights -->
+        <section class="wrapper">
+            <div class="inner">
+                <header class="special">
+                    <h2>Different mechanics</h2>
+                    <p style="color: black">Different dice mechanics affect not only the chances of success, but also the player perception of fairness and control over the situation. Single dice rolls feel more random than sum rolls, dice pool reinforces the feeling of control, keep best dice gives a sense of advantage, while exploding dice give a sense of awesomeness.</p>
+                </header>
+                <div class="highlights">
+                    <section>
+                        <div class="content">
+                            <header>
+                                <a href="#" class="icon fa-compass"><span class="label">Icon</span></a>
+                                <h3>Dice sum</h3>
+                            </header>
+                            <p>Roll multiple dice and get a number smaller than a target. Gives predictable results with sporadic surprises.</p>
+                            <p>Examples: GURPS, and Dungeon World.</p>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="content">
+                            <header>
+                                <a href="#" class="icon fa-sign-in"><span class="label">Icon</span></a>
+                                <h3>Dice pool</h3>
+                            </header>
+                            <p>Roll multiple dice and count the number of dice above the target number. Generates a tactile sense of the power to overcome the test.</p>
+                            <p>Example: Vampire, the Masquerade.</p>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="content">
+                            <header>
+                                <a href="#" class="icon fa-question"><span class="label">Icon</span></a>
+                                <h3>Roll and keep</h3>
+                            </header>
+                            <p>Roll multiple dice and keep the best (or worse). You need at least one above the target number. Predictable results with a sense of epicness.</p>
+                            <p>Example: 7th Sea, and DnD <i>roll with advantage</i>.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="cta" class="wrapper">
+            <div class="inner">
+                <h2 style="color: black">Find the right probabilities</h2>
+                <p style="color: black">Choose the rolling style below and find the probability ranges.</p>
+            </div>
+        </section>
+
+        <!-- Bottom -->
+        <section class="wrapper">
+            <div class="inner">
+                <header class="special">
+                    <h2>Dice sum</h2>
+                    <p>Generates a table with probalities of success for throwing multiple dice, and considering as success if the sum of them are <i>equal or below</i> the target number.</p>
+                    <p>Choose the dice.<br />The lines are the number of dices you throw and the columns are target number.</p>
+                </header>
+                <div>
+                    <section>
+                        <div class="content" style="text-align: center">
+                            <form>
+                                <p>
+                                    <label for="sum-faces">Dice</label>
+                                    <select name="sum-faces" id="sum-faces">
+                                        <option value="" selected>select a die</option>
+                                        <option value="4">d4</option>
+                                        <option value="6">d6</option>
+                                        <option value="8">d8</option>
+                                        <option value="10">d10</option>
+                                        <option value="12">d12</option>
+                                        <option value="20">d20</option>
+                                    </select>
+                                </p>
+                            </form>
+                            <div id="sum-result"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <hr />
+            <div class="inner">
+                <header class="special">
+                    <h2>Dice Pool</h2>
+                    <p>Generates a table with probalities of success for throwing multiple dice and counting the ones <i>equal or above</i> the target number.</p>
+                    <p>Choose the dice, choose the target number.<br />The lines are the number of dices you throw and the columns are the number os success required.</p>
+                </header>
+                <div>
+                    <section>
+                        <div class="content" style="text-align: center">
+                            <form>
+                                <p>
+                                    <label for="pool-faces">Dice</label>
+                                    <select name="pool-faces" id="pool-faces">
+                                        <option value="" selected>select a die</option>
+                                        <option value="4">d4</option>
+                                        <option value="6">d6</option>
+                                        <option value="8">d8</option>
+                                        <option value="10">d10</option>
+                                        <option value="12">d12</option>
+                                        <option value="20">d20</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="pool-target">Target number (this or higher)</label>
+                                    <select name="pool-target" id="pool-target">
+                                        <option value="">select a target</option>
+                                    </select>
+                                </p>
+                            </form>
+                            <div id="pool-result"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+			  <footer id="footer">
+				    <div class="inner">
+					      <div class="content">
+						        <section>
+							          <h3>Here comes a very inspirational text praising the author and the games</h3>
+							          <p>... which I have no patience or inclination to write -_-</p>
+						        </section>
+						        <section>
+                        &nbsp;
+						        </section>
+						        <section>
+							          <h4>About the author</h4>
+                        <ul class="plain">
+                            <li><a href="https://medium.com/@ronie"><i class="icon fa-medium">&nbsp;</i>Medium</a></li>
+                            <li><a href="https://twitter.com/ronie"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                            <li><a href="https://github.com/ruliana"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="copyright">
+                    &#596;&#8413;&nbsp;&nbsp;Copyleft 2020 by Ruliana.
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+        <script>
+         "use strict";
+
+         // red -> yellow -> green
+         const colors = ["lightgray", "#d73027", "#fc8d59", "#fee08b", "#ffffbf", "#d9ef8b", "#91cf60", "#1a9850"];
+         const colorProbabilities = [0, 10, 33, 50, 66, 80, 95];
+
+         function pascalTriangle(rows) {
+             const result = [[1], [1, 1]];
+
+             for (let i = 2; i < rows; i++) {
+                 const row = Array(i + 1);
+                 row[0] = 1;
+                 for (let j = 1; j < i; j++) {
+                     row[j] = result[i - 1][j - 1] + result[i - 1][j];
+                 }
+                 row[i] = 1;
+                 result.push(row);
+             }
+
+             return result;
+         }
+         const pascal = pascalTriangle(100);
+
+         function nCr(n, r) {
+             return pascal[n][r];
+         }
+
+         // Dice sum
+         function sumInitialize() {
+             const sumResultElement = document.querySelector("#sum-result");
+             const sumFacesElement = document.querySelector("#sum-faces");
+
+             function diceSumProbability(faces, dice, target) {
+                 const kMax = Math.floor((target - dice) / faces);
+
+                 let partialResult = 0;
+                 for (let i = 0; i <= kMax; i++) {
+                     partialResult += (-1) ** i * nCr(dice, i) * nCr(target - faces * i - 1, dice - 1);
+                 }
+
+                 return (1 / faces ** dice) * partialResult;
+             }
+
+             function diceSumProbabilityLessThanOrEqual(faces, dice, target) {
+                 let probability = 0;
+                 for (let i = dice; i <= target; i++) {
+                     probability += diceSumProbability(faces, dice, i);
+                 }
+                 return (100 * probability).toFixed(1);
+             }
+
+             function sumRefreshTable() {
+                 const maxDice = 3;
+                 const faces = parseInt(sumFacesElement.value);
+
+                 let table = "<table><thead>";
+                 if (isNaN(faces)) {
+                     sumResultElement.innerHTML = "";
+                     return;
+                 }
+
+                 table += `<tr>`
+                 table += `<th>target/dice</th>`
+                 for (let dice = 1; dice <= maxDice; dice++) {
+                     table += `<th>${dice}d${faces}</th>`
+                 }
+
+                 table += `</tr></thead><tbody>`;
+
+                 for (let target = 1; target <= maxDice * faces; target++) {
+                     table += `<tr>`
+                     table += `<th>${target} or less</t>`;
+                     for (let dice = 1; dice <= maxDice; dice++) {
+                         if (target >= dice && target <= dice * faces) {
+                             const probability = diceSumProbabilityLessThanOrEqual(faces, dice, target);
+                             const colorIndex = colorProbabilities.findIndex(i => probability <= i);
+                             const color = colors[colorIndex == -1 ? colors.length - 1 : colorIndex];
+                             table += `<td style="background-color: ${color};">${probability}%</td>`;
+                         } else {
+                             table += `<td style="background-color: lightgray;">&nbsp;</td>`;
+                         }
+                     }
+                     table += `</tr>`;
+                 }
+                 table += "</tbody></table>";
+
+                 sumResultElement.innerHTML = table;
+             }
+
+             sumFacesElement.addEventListener("change", sumRefreshTable);
+         }
+
+         // Dice pool
+         function poolInitialize() {
+             const maxDice = 10;
+             const poolResultElement = document.querySelector("#pool-result");
+             const poolFacesElement = document.querySelector("#pool-faces");
+             const poolTargetElement = document.querySelector("#pool-target");
+
+             function dicePoolProbability(faces, dice, target, successes) {
+                 const probability = 1 - ((target - 1) / faces);
+
+                 let sumProbabilities = 0;
+                 for (let i = successes; i <= dice; i++) {
+                     sumProbabilities += nCr(dice, i) * (probability ** i) * ((1 - probability) ** (dice - i));
+                 }
+
+                 return (100 * sumProbabilities).toFixed(1);
+             }
+
+             function poolRefreshTarget() {
+                 const faces = parseInt(poolFacesElement.value);
+                 const target = parseInt(poolTargetElement.value);
+
+                 let targetResult = `<option value="">select a target</option>`;
+                 for (let t = 2; t <= faces; t++) {
+                     const selected = t === target ? "selected" : "";
+                     targetResult += `<option value="${t}" ${selected}>${t}</option>`;
+                 }
+                 poolTargetElement.innerHTML = targetResult;
+             }
+
+             function poolRefreshTable() {
+                 const faces = parseInt(poolFacesElement.value);
+                 const target = parseInt(poolTargetElement.value);
+
+                 let table = "<table><thead>";
+                 if (isNaN(faces) || isNaN(target)) {
+                     poolResultElement.innerHTML = "";
+                     return;
+                 }
+
+                 table += `<tr>`
+                 table += `<th>successes/dice</th>`
+                 for (let successes = 1; successes <= 10; successes++) {
+                     table += `<th>${successes}d >= ${target}</th>`
+                 }
+
+                 table += `</tr></thead><tbody>`;
+
+                 for (let dice = 1; dice <= maxDice; dice++) {
+                     table += `<tr>`
+                     table += `<th>${dice}d${faces}</t>`;
+                     for (let successes = 1; successes <= 10; successes++) {
+                         if (successes <= dice) {
+                             const probability = dicePoolProbability(faces, dice, target, successes);
+                             const colorIndex = colorProbabilities.findIndex(i => probability <= i);
+                             const color = colors[colorIndex == -1 ? colors.length - 1 : colorIndex];
+                             table += `<td style="background-color: ${color};">${probability}</td>`;
+                         } else {
+                             table += `<td style="background-color: lightgray;">&nbsp;</td>`;
+                         }
+                     }
+                     table += `</tr>`;
+                 }
+                 table += "</tbody></table>";
+
+                 poolResultElement.innerHTML = table;
+             }
+
+             poolFacesElement.addEventListener("change", poolRefreshTarget);
+             poolFacesElement.addEventListener("change", poolRefreshTable);
+             poolTargetElement.addEventListener("change", poolRefreshTable);
+         }
+
+         poolInitialize();
+         sumInitialize();
+        </script>
+    </body>
+</html>
