@@ -102,7 +102,7 @@
                     <section>
                         <div class="content">
                             <header>
-                                <a href="#" class="icon fa-compass"><span class="label">Icon</span></a>
+                                <a href="#" class="icon fa-plus-square-o"><span class="label">Icon</span></a>
                                 <h3>Dice sum</h3>
                             </header>
                             <p>Roll multiple dice and get a number smaller than a target. Gives predictable results with sporadic surprises.</p>
@@ -112,7 +112,7 @@
                     <section>
                         <div class="content">
                             <header>
-                                <a href="#" class="icon fa-sign-in"><span class="label">Icon</span></a>
+                                <a href="#" class="icon fa-cubes"><span class="label">Icon</span></a>
                                 <h3>Dice pool</h3>
                             </header>
                             <p>Roll multiple dice and count the number of dice above the target number. Generates a tactile sense of the power to overcome the test.</p>
@@ -122,7 +122,7 @@
                     <section>
                         <div class="content">
                             <header>
-                                <a href="#" class="icon fa-question"><span class="label">Icon</span></a>
+                                <a href="#" class="icon fa-cut"><span class="label">Icon</span></a>
                                 <h3>Roll and keep</h3>
                             </header>
                             <p>Roll multiple dice and keep the best (or worse). You need at least one above the target number. Predictable results with a sense of epicness.</p>
@@ -269,6 +269,14 @@
              return pascal[n][r];
          }
 
+         function sum(min, max, f) {
+             let result = 0;
+             for (let i = min; i <= max; i++) {
+                 result += f(i);
+             }
+             return result;
+         }
+
          // Dice sum
          function sumInitialize() {
              const sumResultElement = document.querySelector("#sum-result");
@@ -277,19 +285,16 @@
              function diceSumProbability(faces, dice, target) {
                  const kMax = Math.floor((target - dice) / faces);
 
-                 let partialResult = 0;
-                 for (let i = 0; i <= kMax; i++) {
-                     partialResult += (-1) ** i * nCr(dice, i) * nCr(target - faces * i - 1, dice - 1);
-                 }
+                 const result = sum(0, kMax,
+                                    (i) => (-1) ** i * nCr(dice, i) * nCr(target - faces * i - 1, dice - 1));
 
-                 return (1 / faces ** dice) * partialResult;
+                 return (1 / faces ** dice) * result;
              }
 
              function diceSumProbabilityLessThanOrEqual(faces, dice, target) {
-                 let probability = 0;
-                 for (let i = dice; i <= target; i++) {
-                     probability += diceSumProbability(faces, dice, i);
-                 }
+                 const probability = sum(dice, target,
+                                         (i) => diceSumProbability(faces, dice, i));
+
                  return (100 * probability).toFixed(1);
              }
 
@@ -344,10 +349,8 @@
              function dicePoolProbability(faces, dice, target, successes) {
                  const probability = 1 - ((target - 1) / faces);
 
-                 let sumProbabilities = 0;
-                 for (let i = successes; i <= dice; i++) {
-                     sumProbabilities += nCr(dice, i) * (probability ** i) * ((1 - probability) ** (dice - i));
-                 }
+                 const sumProbabilities = sum(successes, dice,
+                                              (i) => nCr(dice, i) * (probability ** i) * ((1 - probability) ** (dice - i)));
 
                  return (100 * sumProbabilities).toFixed(1);
              }
