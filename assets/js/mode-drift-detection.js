@@ -3,7 +3,8 @@ setTimeout(function() {
 
   // Calculate the boundaries for the target box.
   class BoxZone {
-    constructor(chart, indexes) {
+    constructor(label, chart, indexes) {
+      this.label = label;
       this.chart = chart;
       this.indexes = indexes;
 
@@ -48,9 +49,9 @@ setTimeout(function() {
       this.median = median;
       this.upper = upper;
 
-      this.aboveNormal = new BoxZone(chart, this.aboveNormalIndexes);
-      this.belowNormal = new BoxZone(chart, this.belowNormalIndexes);
-      this.outOfControl = new BoxZone(chart, this.outOfControlIndexes);
+      this.aboveNormal = new BoxZone("Above normal", chart, this.aboveNormalIndexes);
+      this.belowNormal = new BoxZone("Below normal", chart, this.belowNormalIndexes);
+      this.outOfControl = new BoxZone("Out of Control", chart, this.outOfControlIndexes);
     }
 
     // Indexes in reverse order
@@ -174,11 +175,12 @@ setTimeout(function() {
 
       this.normalBoxText = this.addText(this.sampleXMin, this.yDataMax, "Normal zone");
       this.lowerLineText = this.addText(this.sampleXMax, calc.lower, `${(calc.lowerBoundary * 100).toFixed(0)} percentile`);
-      this.medianLineText = this.addText(this.sampleXMax, calc.median, `Median`);
+      this.medianLineText = this.addText(this.sampleXMax, calc.median, "Median");
       this.upperLineText = this.addText(this.sampleXMax, calc.upper, `${(calc.upperBoundary * 100).toFixed(0)} percentile`);
 
       // Dummy values to be updated in `updateDraw`
       this.targetBox = this.addTargetArea(0, 1, 0, 1);
+      this.targetBoxText = this.addText(0, 0, "");
 
       this.updateDraw();
     }
@@ -201,6 +203,8 @@ setTimeout(function() {
         x: xMinPixel,
         width: xMaxPixel - xMinPixel
       });
+      // Magic number below just add some left margin for clarity
+      this.normalBoxText.attr({x: xMinPixel + 15});
 
       // If we have a trend, draw just the median
       // and hide the boundaries.
@@ -270,9 +274,6 @@ setTimeout(function() {
       } else {
         this.hideTargetBox();
       }
-
-      // Magic number below just add some left margin for clarity
-      this.normalBoxText.attr({x: xMinPixel + 15});
     }
 
     // Destroy everything from "initDraw"
@@ -280,14 +281,19 @@ setTimeout(function() {
       this.filling.destroy();
       this.minLine.destroy();
       this.maxLine.destroy();
-      this.lowerLine.destroy();
-      this.medianLine.destroy();
-      this.upperLine.destroy();
-      this.targetBox.destroy();
       this.normalBoxText.destroy();
+
+      this.lowerLine.destroy();
       this.lowerLineText.destroy();
+
+      this.medianLine.destroy();
       this.medianLineText.destroy();
+
+      this.upperLine.destroy();
       this.upperLineText.destroy();
+
+      this.targetBox.destroy();
+      this.targetBoxText.destroy();
     }
 
     addListeners() {
@@ -344,6 +350,11 @@ setTimeout(function() {
       const xTargetMaxPixel = boxZone.xTargetMaxPixel;
       const yTargetMinPixel = boxZone.yTargetMinPixel;
       const yTargetMaxPixel = boxZone.yTargetMaxPixel;
+      const targetLabel = boxZone.label;
+      // If the target box is too short, put the label above it
+      const targetLabelYPixel = (yTargetMinPixel - yTargetMaxPixel) < this.targetBoxText.height
+            ? yTargetMaxPixel - this.targetBoxText.height
+            : yTargetMaxPixel;
 
       this.targetBox.attr({
         x: xTargetMinPixel,
@@ -351,14 +362,21 @@ setTimeout(function() {
         width: xTargetMaxPixel - xTargetMinPixel,
         height: yTargetMinPixel - yTargetMaxPixel
       });
+      this.targetBoxText.attr({
+        x: xTargetMinPixel,
+        y: targetLabelYPixel,
+        text: targetLabel
+      });
     }
 
     showTargetBox() {
       this.targetBox.attr({visibility: "visible"});
+      this.targetBoxText.attr({visibility: "visible"});
     }
 
     hideTargetBox() {
       this.targetBox.attr({visibility: "hidden"});
+      this.targetBoxText.attr({visibility: "hidden"});
     }
 
     addHorizontalLine(xMinIndex, xMaxIndex, yValue) {
@@ -370,8 +388,10 @@ setTimeout(function() {
       const yMinPixel = this.yAxis.toPixels(yValue);
       const yMaxPixel = this.yAxis.toPixels(yValue);
       return this.chart.renderer
-                 .path(["M", xMinPixel, yMinPixel,
-                        "L", xMaxPixel, yMaxPixel])
+                 .path([
+                   "M", xMinPixel, yMinPixel,
+                   "L", xMaxPixel, yMaxPixel
+                 ])
                  .attr({
                    'stroke-width': 1,
                    'stroke-dasharray': [4, 2],
