@@ -1,9 +1,32 @@
 setTimeout(function() {
   "use strict";
 
+  class BoxZone {
+    constructor(chart, indexes) {
+      this.chart = chart;
+      this.indexes = indexes;
+    }
+
+    get hasData() { return this.indexes.length > 0 }
+    get minIndex() { return math.min(this.indexes) }
+    get maxIndex() { return math.max(this.indexes) }
+    get minYValue() { return math.min(this.chart.yData.slice(this.minIndex, this.maxIndex + 1)) }
+    get maxYValue() { return math.max(this.chart.yData.slice(this.minIndex, this.maxIndex + 1)) }
+
+    get xTargetMinPixel() { this.chart.xAxis.toPixels(this.chart.xData[this.minIndex]) }
+    get xTargetMaxPixel() { this.chart.xAxis.toPixels(this.chart.xData[this.maxIndex]) }
+    get yTargetMinPixel() { this.chart.yAxis.toPixels(0.8 * this.minYValue) }
+    get yTargetMaxPixel() { this.chart.yAxis.toPixels(1.2 * this.maxYValue) }
+  }
+
   class Calc {
     constructor(chart) {
       this.chart = chart
+
+      // Parameters
+      this.consecutiveTrendPoints = 9;
+      this.anomalyMaxGap = 4;
+      this.anomalyMinLength = 5;
 
       const nonNull = chart.sampleYData.filter(y => y !== null);
       const [lower, median, upper] = math.quantileSeq(nonNull, [0.01, 0.5, 0.99]);
@@ -11,8 +34,9 @@ setTimeout(function() {
       this.median = median;
       this.upper = upper;
 
-      this.anomalyMaxGap = 4;
-      this.anomalyMinLength = 5;
+      const trendUpIndexes = this.findReverseConsecutive(y => y > this.median,
+                                                         this.consecutiveTrendPoints);
+      this.trendUp = new BoxZone(chart, trendUpIndexes);
     }
 
     // Indexes in reverse order
@@ -201,10 +225,10 @@ setTimeout(function() {
       // Adjust the target box depending of if we
       // have a trend or an anomaly.
       if (calc.hasTrend) {
-        const xTargetMinPixel = this.xAxis.toPixels(this.xData[calc.trendMinIndex]);
-        const xTargetMaxPixel = this.xAxis.toPixels(this.xData[calc.trendMaxIndex]);
-        const yTargetMinPixel = this.yAxis.toPixels(0.8 * calc.trendYMin);
-        const yTargetMaxPixel = this.yAxis.toPixels(1.2 * calc.trendYMax);
+        const xTargetMinPixel = calc.trendUp.xTargetMinPixel;
+        const xTargetMaxPixel = calc.trendUp.xTargetMaxPixel;
+        const yTargetMinPixel = calc.trendUp.yTargetMinPixel;
+        const yTargetMaxPixel = calc.trendUp.yTargetMaxPixel;
 
         this.targetBox.attr({
           visibility: "visible",
