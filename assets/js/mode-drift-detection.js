@@ -346,7 +346,7 @@ setTimeout(function() {
 
       return this.chart.renderer
                  .rect(xPixel, this.topPixel,
-                       lineWidth, this.topPixel - this.bottomPixel)
+                       lineWidth, this.bottomPixel - this.topPixel)
                  .attr(options)
                  .add();
     }
