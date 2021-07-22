@@ -24,8 +24,8 @@ setTimeout(function() {
     // interested on.
     get xTargetMinPixel() { return this.chart.xAxis.toPixels(this.minXValue) - 0.5 * this.tickSize }
     get xTargetMaxPixel() { return this.chart.xAxis.toPixels(this.maxXValue) + 0.5 * this.tickSize }
-    get yTargetMinPixel() { return this.chart.yAxis.toPixels(math.max(0.8 * this.minYValue, this.chart.yDataMin)) }
-    get yTargetMaxPixel() { return this.chart.yAxis.toPixels(math.min(1.2 * this.maxYValue, this.chart.yDataMax)) }
+    get yTargetMinPixel() { return math.min(this.chart.yAxis.toPixels(0.8 * this.minYValue), this.chart.bottomPixel) }
+    get yTargetMaxPixel() { return math.max(this.chart.yAxis.toPixels(1.2 * this.maxYValue), this.chart.topPixel) }
   }
 
   class Calc {
@@ -121,10 +121,10 @@ setTimeout(function() {
 
       this.xDataMin = this.xAxis.dataMin;
       this.xDataMax = this.xAxis.dataMax;
-      this.yDataMin = this.yAxis.dataMin;
-      this.yDataMax = this.yAxis.dataMax;
       this.xData = this.series.xData;
       this.yData = this.series.yData;
+      this.topPixel = this.chart.plotTop;
+      this.bottomPixel = this.topPixel + this.chart.plotHeight;
       this.xIntervalInPixels = this.xAxis.toPixels(this.xData[1]) - this.xAxis.toPixels(this.xData[0]);
 
       // The two fields below are going to be updated
@@ -345,8 +345,8 @@ setTimeout(function() {
       };
 
       return this.chart.renderer
-                 .rect(xPixel, this.chart.plotTop,
-                       lineWidth, this.chart.plotHeight)
+                 .rect(xPixel, this.topPixel,
+                       lineWidth, this.topPixel - this.bottomPixel)
                  .attr(options)
                  .add();
     }
