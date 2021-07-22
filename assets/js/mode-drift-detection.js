@@ -127,11 +127,12 @@ setTimeout(function() {
       this.targetBox.destroy();
     }
 
+    get xMaxIndex() { return this.xData.length - 1 }
+
     get sampleXData() { return this.xData.filter(x => x >= this.sampleXMin && x <= this.sampleXMax) }
     get sampleYData() { return this.yData.filter((_, i) => this.xData[i] >= this.sampleXMin && this.xData[i] <= this.sampleXMax) }
     get sampleXMinIndex() { return Math.max(0, this.xData.findIndex(x => x <= this.sampleXMin)) }
     get sampleXMaxIndex() { return this.xData.findIndex(x => x >= this.sampleXMax) }
-    get xMaxIndex() { return this.xData.length - 1 }
 
     get calc() { return new Calc(this) }
 
@@ -175,6 +176,8 @@ setTimeout(function() {
         width: xMaxPixel - xMinPixel
       });
 
+      // If we have a trend, draw just the median
+      // and hide the boundaries.
       if (calc.hasTrend) {
         this.medianLine.attr({
           visibility: "visible",
@@ -195,6 +198,8 @@ setTimeout(function() {
         });
       }
 
+      // Adjust the target box depending of if we
+      // have a trend or an anomaly.
       if (calc.hasTrend) {
         const xTargetMinPixel = this.xAxis.toPixels(this.xData[calc.trendMinIndex]);
         const xTargetMaxPixel = this.xAxis.toPixels(this.xData[calc.trendMaxIndex]);
@@ -244,27 +249,38 @@ setTimeout(function() {
 
       chart.container.addEventListener("mousemove", (event) => {
         const normalizedEvent = chart.pointer.normalize(event);
+        let sampleXMin = this.sampleXMin;
+        let sampleXMax = this.sampleXMax;
 
         if (filling.drag && this.mouseOldX) {
           const mouseNewX = normalizedEvent.chartX;
           const oldX = this.xAxis.toValue(this.mouseOldX);
           const newX = this.xAxis.toValue(mouseNewX);
           const newPos = newX - oldX;
-          this.sampleXMin += newPos;
-          this.sampleXMax += newPos;
-          this.updateDraw();
+          sampleXMin += newPos;
+          sampleXMax += newPos;
         }
         this.mouseOldX = normalizedEvent.chartX;
 
         if (minLine.drag) {
-          this.sampleXMin = this.xAxis.toValue(normalizedEvent.chartX);
-          this.updateDraw();
+          sampleXMin = this.xAxis.toValue(normalizedEvent.chartX);
         }
 
         if (maxLine.drag) {
-          this.sampleXMax = this.xAxis.toValue(normalizedEvent.chartX);
-          this.updateDraw();
+          sampleXMax = this.xAxis.toValue(normalizedEvent.chartX);
         }
+
+        // Only accept the new positions if they are
+        // inside the graph boundaries.
+        if (sampleXMin >= this.xAxisMin && sampleXMax <= this.xAxisMax) {
+          // Only redraw if we have something changing.
+          if (this.sampleXMin != sampleXMin || this.sampleXMax != sampleXMax) {
+            this.sampleXMin = sampleXMin;
+            this.sampleXMax = sampleXMax;
+            this.updateDraw();
+          }
+        }
+
       });
     }
 
@@ -361,21 +377,9 @@ setTimeout(function() {
       this.activeLegend = null;
     }
 
+    // Save legend events and replace by
+    // other events
     focusModeOn() {
-      // Save legend events
-      if (!this.legendMouseOver) {
-        this.legendMouseOver = [];
-        const legends = this.chart.legend.allItems;
-        for (let i = 0; i < legends.length; i++) {
-          const element = legends[i].legendItem.element.parentElement;
-          const button = document.createElement('button');
-          button.innerText = 'Ver';
-          element.append(button);
-          this.legendMouseOver[i] = element.onmouseover;
-          element.onmouseover = null;
-        }
-      }
-
       if (!this.legendClick) {
         this.legendClick = [];
         const legends = this.chart.legend.allItems;
@@ -398,21 +402,10 @@ setTimeout(function() {
                 series.setVisible(false);
               }
               this.chart.series[i].setVisible(true);
-              this.legendMouseOver[i]();
               this.controlChart = new ControlChart(this.chart, i);
               this.activeLegend = i;
             }
           }
-        }
-      }
-
-      if (!this.legendMouseOut) {
-        this.legendMouseOut = [];
-        const legends = this.chart.legend.allItems;
-        for (let i = 0; i < legends.length; i++) {
-          const element = legends[i].legendItem.element.parentElement;
-          this.legendMouseOut[i] = element.onmouseout;
-          element.onmouseout = null;
         }
       }
     }
