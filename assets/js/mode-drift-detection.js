@@ -13,10 +13,10 @@ setTimeout(function() {
     get minYValue() { return math.min(this.chart.yData.slice(this.minIndex, this.maxIndex + 1)) }
     get maxYValue() { return math.max(this.chart.yData.slice(this.minIndex, this.maxIndex + 1)) }
 
-    get xTargetMinPixel() { this.chart.xAxis.toPixels(this.chart.xData[this.minIndex]) }
-    get xTargetMaxPixel() { this.chart.xAxis.toPixels(this.chart.xData[this.maxIndex]) }
-    get yTargetMinPixel() { this.chart.yAxis.toPixels(0.8 * this.minYValue) }
-    get yTargetMaxPixel() { this.chart.yAxis.toPixels(1.2 * this.maxYValue) }
+    get xTargetMinPixel() { return this.chart.xAxis.toPixels(this.chart.xData[this.minIndex]) }
+    get xTargetMaxPixel() { return this.chart.xAxis.toPixels(this.chart.xData[this.maxIndex]) }
+    get yTargetMinPixel() { return this.chart.yAxis.toPixels(0.8 * this.minYValue) }
+    get yTargetMaxPixel() { return this.chart.yAxis.toPixels(1.2 * this.maxYValue) }
   }
 
   class Calc {
@@ -132,8 +132,9 @@ setTimeout(function() {
       this.yData = this.series.yData;
       this.xIntervalInPixels = this.xAxis.toPixels(this.xData[1]) - this.xAxis.toPixels(this.xData[0]);
 
-      // The fields below are going to be updated
-      // when the user moves the window.
+      // The two fields below are going to be updated
+      // when the user moves the "normal zone" window.
+      // This is just a fairly good default.
       this.sampleXMin = this.xAxisMin;
       this.sampleXMax = Math.floor(1/4 * (this.xAxisMax - this.xAxisMin) + this.xAxisMin);
 
