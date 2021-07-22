@@ -1,6 +1,7 @@
 setTimeout(function() {
   "use strict";
 
+  // Calculate the boundaries for the target box.
   class BoxZone {
     constructor(chart, indexes) {
       this.chart = chart;
@@ -28,17 +29,21 @@ setTimeout(function() {
     get yTargetMaxPixel() { return math.max(this.chart.yAxis.toPixels(1.2 * this.maxYValue), this.chart.topPixel) }
   }
 
+  // Drifting is calculated here.
+  // Handle BoxZones for ControlChart update the drawing
   class Calc {
     constructor(chart) {
       this.chart = chart
 
       // Parameters
+      this.lowerBoundary = 0.01;
+      this.upperBoundary = 0.99;
       this.consecutiveTrendPoints = 10;
       this.outOfControlMaxGap = 4;
       this.outOfControlMinLength = 5;
 
       const nonNull = chart.sampleYData.filter(y => y !== null);
-      const [lower, median, upper] = math.quantileSeq(nonNull, [0.01, 0.5, 0.99]);
+      const [lower, median, upper] = math.quantileSeq(nonNull, [this.lowerBoundary, 0.5, this.upperBoundary]);
       this.lower = lower;
       this.median = median;
       this.upper = upper;
@@ -112,6 +117,7 @@ setTimeout(function() {
     }
   }
 
+  // Call calculation and update drawing
   class ControlChart {
     constructor(originalChart, focusSeriesIndex = 0) {
       this.chart = originalChart;
@@ -121,6 +127,8 @@ setTimeout(function() {
 
       this.xDataMin = this.xAxis.dataMin;
       this.xDataMax = this.xAxis.dataMax;
+      this.yDataMin = this.yAxis.min;
+      this.yDataMax = this.yAxis.max;
       this.xData = this.series.xData;
       this.yData = this.series.yData;
       this.topPixel = this.chart.plotTop;
@@ -164,6 +172,11 @@ setTimeout(function() {
                                               this.xMaxIndex,
                                               calc.upper);
 
+      this.normalBoxText = this.addText(this.sampleXMin, this.yDataMax, "Normal zone");
+      this.lowerLineText = this.addText(this.sampleXMax, calc.lower, `${(calc.lowerBoundary * 100).toFixed(0)} percentile`);
+      this.medianLineText = this.addText(this.sampleXMax, calc.median, `Median`);
+      this.upperLineText = this.addText(this.sampleXMax, calc.upper, `${(calc.upperBoundary * 100).toFixed(0)} percentile`);
+
       // Dummy values to be updated in `updateDraw`
       this.targetBox = this.addTargetArea(0, 1, 0, 1);
 
@@ -196,19 +209,42 @@ setTimeout(function() {
           visibility: "visible",
           d: `M ${xMaxPixel} ${yMedianPixel} L ${xLeftmostPixel} ${yMedianPixel}`
         });
+        this.medianLineText.attr({
+          visibility: "visible",
+          x: xMaxPixel + 15, // Magic number is margin
+          y: yMedianPixel - this.medianLineText.height
+        })
+
         this.lowerLine.attr({visibility: "hidden"});
+        this.lowerLineText.attr({visibility: "hidden"});
+
         this.upperLine.attr({visibility: "hidden"});
+        this.upperLineText.attr({visibility: "hidden"});
+
       } else {
+
         this.medianLine.attr({visibility: "hidden"});
+        this.medianLineText.attr({visibility: "hidden"});
 
         this.lowerLine.attr({
           visibility: "visible",
           d: `M ${xMaxPixel} ${yLowerPixel} L ${xLeftmostPixel} ${yLowerPixel}`
         });
+        this.lowerLineText.attr({
+          visibility: "visible",
+          x: xMaxPixel + 15, // Magic number is margin
+          y: yLowerPixel
+        })
+
         this.upperLine.attr({
           visibility: "visible",
           d: `M ${xMaxPixel} ${yUpperPixel} L ${xLeftmostPixel} ${yUpperPixel}`
         });
+        this.upperLineText.attr({
+          visibility: "visible",
+          x: xMaxPixel + 15, // Magic number is margin
+          y: yUpperPixel - this.upperLineText.height
+        })
       }
 
       // Adjust the target box depending of if we
@@ -234,6 +270,9 @@ setTimeout(function() {
       } else {
         this.hideTargetBox();
       }
+
+      // Magic number below just add some left margin for clarity
+      this.normalBoxText.attr({x: xMinPixel + 15});
     }
 
     // Destroy everything from "initDraw"
@@ -245,6 +284,10 @@ setTimeout(function() {
       this.medianLine.destroy();
       this.upperLine.destroy();
       this.targetBox.destroy();
+      this.normalBoxText.destroy();
+      this.lowerLineText.destroy();
+      this.medianLineText.destroy();
+      this.upperLineText.destroy();
     }
 
     addListeners() {
@@ -403,8 +446,23 @@ setTimeout(function() {
                  })
                  .add();
     }
+
+    addText(xLeft, yTop, text) {
+      return this.chart.renderer
+                 .label(text,
+                        this.xAxis.toPixels(xLeft),
+                        this.yAxis.toPixels(yTop))
+                 .attr({
+                   fill: this.series.color,
+                   zIndex: 10
+                 })
+                 .css({color: 'white'})
+                 .add();
+    }
   }
 
+  // Handle legend events and activates ControlChart on
+  // the right series.
   class Controller {
     constructor(chart) {
       this.chart = chart;
