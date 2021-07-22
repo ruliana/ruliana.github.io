@@ -214,7 +214,18 @@ setTimeout(function() {
       // Adjust the target box depending of if we
       // have a above or below normal or out of
       // control regions.
-      if (calc.aboveNormal.hasData) {
+      if (calc.aboveNormal.hasData && calc.belowNormal.hasData) {
+        this.showTargetBox();
+        // If we have both, show the latest zone
+        if (calc.aboveNormal.maxXValue > calc.belowNormal.maxXValue) {
+          this.updateTargetBox(calc.aboveNormal);
+        } else {
+          this.updateTargetBox(calc.belowNormal);
+        }
+      } else if (calc.belowNormal.hasData) {
+        this.showTargetBox();
+        this.updateTargetBox(calc.belowNormal);
+      } else if (calc.aboveNormal.hasData) {
         this.showTargetBox();
         this.updateTargetBox(calc.aboveNormal);
       } else if (calc.outOfControl.hasData) {
