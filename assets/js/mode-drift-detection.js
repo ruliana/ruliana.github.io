@@ -5,18 +5,27 @@ setTimeout(function() {
     constructor(chart, indexes) {
       this.chart = chart;
       this.indexes = indexes;
+
+      this.tickSize = chart.xAxis.toPixels(chart.xData[1]) - chart.xAxis.toPixels(chart.xData[0]);
     }
 
     get hasData() { return this.indexes.length > 0 }
     get minIndex() { return math.min(this.indexes) }
     get maxIndex() { return math.max(this.indexes) }
+
     get minYValue() { return math.min(this.chart.yData.slice(this.minIndex, this.maxIndex + 1)) }
     get maxYValue() { return math.max(this.chart.yData.slice(this.minIndex, this.maxIndex + 1)) }
+    get minXValue() { return this.chart.xData[this.minIndex] }
+    get maxXValue() { return this.chart.xData[this.maxIndex] }
 
-    get xTargetMinPixel() { return this.chart.xAxis.toPixels(this.chart.xData[this.minIndex]) }
-    get xTargetMaxPixel() { return this.chart.xAxis.toPixels(this.chart.xData[this.maxIndex]) }
-    get yTargetMinPixel() { return this.chart.yAxis.toPixels(0.8 * this.minYValue) }
-    get yTargetMaxPixel() { return this.chart.yAxis.toPixels(1.2 * this.maxYValue) }
+    // The magic numbers below just provide some
+    // extra room for the box. Othewise the borders
+    // would be right on top of the values we are
+    // interested on.
+    get xTargetMinPixel() { return this.chart.xAxis.toPixels(this.minXValue) - 0.5 * this.tickSize }
+    get xTargetMaxPixel() { return this.chart.xAxis.toPixels(this.maxXValue) + 0.5 * this.tickSize }
+    get yTargetMinPixel() { return this.chart.yAxis.toPixels(math.max(0.8 * this.minYValue, this.chart.yDataMin)) }
+    get yTargetMaxPixel() { return this.chart.yAxis.toPixels(math.min(1.2 * this.maxYValue, this.chart.yDataMax)) }
   }
 
   class Calc {
@@ -24,9 +33,9 @@ setTimeout(function() {
       this.chart = chart
 
       // Parameters
-      this.consecutiveTrendPoints = 9;
-      this.anomalyMaxGap = 4;
-      this.anomalyMinLength = 5;
+      this.consecutiveTrendPoints = 10;
+      this.outOfControlMaxGap = 4;
+      this.outOfControlMinLength = 5;
 
       const nonNull = chart.sampleYData.filter(y => y !== null);
       const [lower, median, upper] = math.quantileSeq(nonNull, [0.01, 0.5, 0.99]);
@@ -34,9 +43,9 @@ setTimeout(function() {
       this.median = median;
       this.upper = upper;
 
-      const trendUpIndexes = this.findReverseConsecutive(y => y > this.median,
-                                                         this.consecutiveTrendPoints);
-      this.trendUp = new BoxZone(chart, trendUpIndexes);
+      this.aboveNormal = new BoxZone(chart, this.aboveNormalIndexes);
+      this.belowNormal = new BoxZone(chart, this.belowNormalIndexes);
+      this.outOfControl = new BoxZone(chart, this.outOfControlIndexes);
     }
 
     // Indexes in reverse order
@@ -71,28 +80,22 @@ setTimeout(function() {
       return rslt;
     }
 
-    get trendUpIndexes() { return this.findReverseConsecutive(y => y > this.median, 9) }
-    get hasTrend() { return this.trendUpIndexes.length > 0 }
-    get trendMinIndex() { return math.min(this.trendUpIndexes) }
-    get trendMaxIndex() { return math.max(this.trendUpIndexes) }
-    get trendYMin() {
-      return math.min(this.chart.yData.slice(this.trendMinIndex, this.trendMaxIndex + 1));
-    }
-    get trendYMax() {
-      return math.max(this.chart.yData.slice(this.trendMinIndex, this.trendMaxIndex + 1));
+    get aboveNormalIndexes() {
+      return this.findReverseConsecutive(y => y > this.median, this.consecutiveTrendPoints);
     }
 
-    get anomalyIndexes() {
-      return this.findPoints(y => y > 1.2 * this.upper || y < 0.8 * this.lower);
+    get belowNormalIndexes() {
+      return this.findReverseConsecutive(y => y < this.median, this.consecutiveTrendPoints);
     }
 
-    get anomalyArea() {
-      const maxGap = this.anomalyMaxGap;
-      const minLength = this.anomalyMinLength;
+    get outOfControlIndexes() {
+      const indexes = this.findPoints(y => y > 1.2 * this.upper || y < 0.8 * this.lower);
+      const maxGap = this.outOfControlMaxGap;
+      const minLength = this.outOfControlMinLength;
 
       let previous = null;
       let rslt = [];
-      for (let i of this.anomalyIndexes) {
+      for (let i of indexes) {
         if (!previous || previous <= i + maxGap) {
           rslt.push(i);
         } else {
@@ -107,16 +110,6 @@ setTimeout(function() {
         return [];
       }
     }
-
-    get hasAnomaly() { return this.anomalyArea.length > 0 }
-    get anomalyMinIndex() { return math.min(this.anomalyArea) }
-    get anomalyMaxIndex() { return math.max(this.anomalyArea) }
-    get anomalyYMin() {
-      return math.min(this.chart.yData.slice(this.anomalyMinIndex, this.anomalyMaxIndex + 1));
-    }
-    get anomalyYMax() {
-      return math.max(this.chart.yData.slice(this.anomalyMinIndex, this.anomalyMaxIndex + 1));
-    }
   }
 
   class ControlChart {
@@ -126,8 +119,10 @@ setTimeout(function() {
       this.yAxis = this.chart.yAxis[0];
       this.series = this.chart.series[focusSeriesIndex];
 
-      this.xAxisMin = this.xAxis.dataMin;
-      this.xAxisMax = this.xAxis.dataMax;
+      this.xDataMin = this.xAxis.dataMin;
+      this.xDataMax = this.xAxis.dataMax;
+      this.yDataMin = this.yAxis.dataMin;
+      this.yDataMax = this.yAxis.dataMax;
       this.xData = this.series.xData;
       this.yData = this.series.yData;
       this.xIntervalInPixels = this.xAxis.toPixels(this.xData[1]) - this.xAxis.toPixels(this.xData[0]);
@@ -135,21 +130,11 @@ setTimeout(function() {
       // The two fields below are going to be updated
       // when the user moves the "normal zone" window.
       // This is just a fairly good default.
-      this.sampleXMin = this.xAxisMin;
-      this.sampleXMax = Math.floor(1/4 * (this.xAxisMax - this.xAxisMin) + this.xAxisMin);
+      this.sampleXMin = this.xDataMin;
+      this.sampleXMax = Math.floor(1/4 * (this.xDataMax - this.xDataMin) + this.xDataMin);
 
       this.initDraw();
       this.addListeners();
-    }
-
-    destroy() {
-      this.filling.destroy();
-      this.minLine.destroy();
-      this.maxLine.destroy();
-      this.lowerLine.destroy();
-      this.medianLine.destroy();
-      this.upperLine.destroy();
-      this.targetBox.destroy();
     }
 
     get xMaxIndex() { return this.xData.length - 1 }
@@ -161,6 +146,7 @@ setTimeout(function() {
 
     get calc() { return new Calc(this) }
 
+    // Everything that's on screen (even invisible) should be draw here.
     initDraw() {
       const calc = this.calc;
 
@@ -184,6 +170,8 @@ setTimeout(function() {
       this.updateDraw();
     }
 
+    // This one runs every time we drag the "normal zone" window.
+    // It should update everything declared in "initDraw".
     updateDraw() {
       const calc = this.calc;
 
@@ -203,7 +191,7 @@ setTimeout(function() {
 
       // If we have a trend, draw just the median
       // and hide the boundaries.
-      if (calc.hasTrend) {
+      if (calc.aboveNormal.hasData || calc.belowNormal.hasData) {
         this.medianLine.attr({
           visibility: "visible",
           d: `M ${xMaxPixel} ${yMedianPixel} L ${xLeftmostPixel} ${yMedianPixel}`
@@ -224,38 +212,28 @@ setTimeout(function() {
       }
 
       // Adjust the target box depending of if we
-      // have a trend or an anomaly.
-      if (calc.hasTrend) {
-        const xTargetMinPixel = calc.trendUp.xTargetMinPixel;
-        const xTargetMaxPixel = calc.trendUp.xTargetMaxPixel;
-        const yTargetMinPixel = calc.trendUp.yTargetMinPixel;
-        const yTargetMaxPixel = calc.trendUp.yTargetMaxPixel;
-
-        this.targetBox.attr({
-          visibility: "visible",
-          x: xTargetMinPixel - 0.5 * this.xIntervalInPixels,
-          y: yTargetMaxPixel,
-          width: xTargetMaxPixel - xTargetMinPixel + this.xIntervalInPixels,
-          height: yTargetMinPixel - yTargetMaxPixel
-        });
-
-      } else if (calc.hasAnomaly) {
-        const xTargetMinPixel = this.xAxis.toPixels(this.xData[calc.anomalyMinIndex]);
-        const xTargetMaxPixel = this.xAxis.toPixels(this.xData[calc.anomalyMaxIndex]);
-        const yTargetMinPixel = this.yAxis.toPixels(0.8 * calc.anomalyYMin);
-        const yTargetMaxPixel = this.yAxis.toPixels(1.2 * calc.anomalyYMax);
-
-        this.targetBox.attr({
-          visibility: "visible",
-          x: xTargetMinPixel - 0.5 * this.xIntervalInPixels,
-          y: yTargetMaxPixel,
-          width: xTargetMaxPixel - xTargetMinPixel + this.xIntervalInPixels,
-          height: yTargetMinPixel - yTargetMaxPixel
-        });
-
+      // have a above or below normal or out of
+      // control regions.
+      if (calc.aboveNormal.hasData) {
+        this.showTargetBox();
+        this.updateTargetBox(calc.aboveNormal);
+      } else if (calc.outOfControl.hasData) {
+        this.showTargetBox();
+        this.updateTargetBox(calc.outOfControl);
       } else {
-        this.targetBox.attr({visibility: "hidden"});
+        this.hideTargetBox();
       }
+    }
+
+    // Destroy everything from "initDraw"
+    destroy() {
+      this.filling.destroy();
+      this.minLine.destroy();
+      this.maxLine.destroy();
+      this.lowerLine.destroy();
+      this.medianLine.destroy();
+      this.upperLine.destroy();
+      this.targetBox.destroy();
     }
 
     addListeners() {
@@ -295,18 +273,38 @@ setTimeout(function() {
           sampleXMax = this.xAxis.toValue(normalizedEvent.chartX);
         }
 
-        // Only accept the new positions if they are
-        // inside the graph boundaries.
-        if (sampleXMin >= this.xAxisMin && sampleXMax <= this.xAxisMax) {
-          // Only redraw if we have something changing.
+        // Only accept the new positions if they are inside chart boundaries.
+        if (sampleXMin >= this.xDataMin && sampleXMax <= this.xDataMax) {
+          // Only redraw if something have changed.
           if (this.sampleXMin != sampleXMin || this.sampleXMax != sampleXMax) {
             this.sampleXMin = sampleXMin;
             this.sampleXMax = sampleXMax;
             this.updateDraw();
           }
         }
-
       });
+    }
+
+    updateTargetBox(boxZone) {
+      const xTargetMinPixel = boxZone.xTargetMinPixel;
+      const xTargetMaxPixel = boxZone.xTargetMaxPixel;
+      const yTargetMinPixel = boxZone.yTargetMinPixel;
+      const yTargetMaxPixel = boxZone.yTargetMaxPixel;
+
+      this.targetBox.attr({
+        x: xTargetMinPixel,
+        y: yTargetMaxPixel,
+        width: xTargetMaxPixel - xTargetMinPixel,
+        height: yTargetMinPixel - yTargetMaxPixel
+      });
+    }
+
+    showTargetBox() {
+      this.targetBox.attr({visibility: "visible"});
+    }
+
+    hideTargetBox() {
+      this.targetBox.attr({visibility: "hidden"});
     }
 
     addHorizontalLine(xMinIndex, xMaxIndex, yValue) {
