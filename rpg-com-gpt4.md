@@ -48,10 +48,29 @@ Crie uma rede de relacionamento entre os NPCs. Cada um deve estar conectado a pe
 
 ### Passo 5: Visualizando a Rede
 
-Visualizar a rede de relacionamentos pode ser uma referência útil tanto para o Mestre quanto para os jogadores. Ferramentas como Mermaid podem ser usadas para criar diagramas claros ilustrando as conexões entre os personagens.
+Visualizar a rede de relacionamentos pode ser uma referência útil tanto para o Mestre quanto para os jogadores. Ferramentas como [Mermaid](https://mermaid.js.org/) podem ser usadas para criar diagramas claros ilustrando as conexões entre os personagens.
 
 ```plaintext
 Crie um diagrama Mermaid para essa rede.
+```
+
+```mermaid
+graph TD;
+    A[Dr. Evelyn Hartmann] -->|Friend| B[Sir Darcy Abbey];
+    A -->|Rivalry| C[Hildegarde Krause];
+    B -->|Acquaintance| D[Inspector George Harlow];
+    C -->|Associate| E[Baron Viktor Rausch];
+    E -->|Former Superior| F[Heinrich Schultz];
+    F -->|Ally| G[Maria Gonzalez];
+    D -->|Ally| H[Dimitri Ivanov];
+    H -->|Source Contact| G;
+    I[Alastair Crowley] -->|Rival| J[Nadira Aziz];
+    J -->|Opposes| K[Captain Lucien Duval];
+    K -->|Trade Partner| L[Fatma Aydın];
+    L -->|Acquaintance| M[Emir Yılmaz];
+    M -->|Known To| A;
+    I -->|Known To| N[Beatrice Sinclair];
+    N -->|Library Contact| G;
 ```
 
 ### Passo 6: Desenvolvendo o Enredo
