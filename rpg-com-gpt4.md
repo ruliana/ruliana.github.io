@@ -88,11 +88,33 @@ Nota: as imagens desse post também foram geradas pelo GPT-4 baseadas nas descri
 
 ---
 
-## Apêndice: o resultado
+# Apêndice: o resultado
 
-![image](https://github.com/ruliana/ruliana.github.io/assets/63543/7acc4058-04e7-4da3-b7c9-d71b0eab8bcf)
+![image](https://github.com/ruliana/ruliana.github.io/assets/63543/b9d103f5-fb84-4cfb-aa3e-627b58f5a952)
+
 
 Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interesse gerados após a rede de relacionamentos.
+
+## Introdução
+
+Essa introdução foi escrita pelo GPT-4 após a geração dos personagens e da rede de relacionamentos. Pedi que ele usasse o estilo de introdução das histórias de mistério dos anos 1930.
+
+**Sombras Sobre a Europa**
+
+À medida que a névoa sombria do final da década de 1930 desce sobre as terras ancestrais da Europa, um vento sinistro sussurra pelos becos retorcidos de Londres, as ruínas assombradas de Berlim e os cruzamentos místicos de Istambul. O mundo está à beira de um abismo, seu destino entrelaçado nas maquinações clandestinas que se escondem nos cantos escuros do continente.
+
+No coração de Londres, os olhos aguçados de algumas almas corajosas começam a vislumbrar o enigma que se desdobra. À medida que o véu do comum se levanta, uma narrativa arrepiante de horrores eldritch e conhecimento proibido se revela. As Sombras Sobre a Europa acenam, onde a linha entre o terreno e o indizível se confunde.
+
+Entre as imponentes edificações da civilização, uma trama nefasta fermenta para despertar um Ancião, cujo retorno ameaçador promete lançar uma longa e sombria sombra sobre o reino dos homens. As maquinações malignas são meticulosamente tecidas através do tapete das lutas de poder do velho mundo, sociedades secretas e a fome incessante por conhecimento proibido.
+
+Você, os destemidos investigadores, se encontram atraídos para o coração deste redemoinho enigmático. Com cada pista desvendada, a verdade sinistra se aproxima, seus tentáculos escuros se estendendo do abismo. Sua jornada o levará por bibliotecas assombradas, reuniões clandestinas e catacumbas esquecidas, enquanto você corre contra o tempo para frustrar os planos nefastos que ameaçam mergulhar o mundo em uma era de escuridão.
+
+Ao se aventurar na noite, armado apenas com um lampejo de esperança, lembre-se - nas sombras, nem todos que oferecem ajuda o fazem sem um preço, e nem todos que carregam malícia são desprovidos de honra. O caminho à frente está repleto de perigo, e o custo do fracasso é a ruína de tudo o que é conhecido.
+
+Agora, enquanto os antigos engrenagens da malevolência avançam inexoravelmente, você se levantará para desafiar a escuridão que avança, ou se tornará apenas um sussurro no conto arrepiante das Sombras Sobre a Europa?
+
+Reúna sua determinação, mergulhe no desconhecido e que a sorte favoreça os corajosos na história arrepiante que está prestes a se desenrolar...
+
 
 ### NPCs
 
@@ -218,6 +240,8 @@ Um caçador de tesouros francês renegado na casa dos 40 anos, implacável, opor
 *Conflito com outros vilões?* - Sua natureza mercenária e falta de motivação ideológica o colocam em conflito com o Barão Rausch e Nadira Aziz, pois ele está disposto a vender para qualquer um, potencialmente minando seus planos.
 
 ## Rede de relacionamentos
+
+![image](https://github.com/ruliana/ruliana.github.io/assets/63543/7acc4058-04e7-4da3-b7c9-d71b0eab8bcf)
 
 uma malha em que cada NPC é conectado a três outros é suficiente para deixar a trama complexa e rica.
 
