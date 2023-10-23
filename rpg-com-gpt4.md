@@ -80,3 +80,93 @@ Com um elenco de personagens e seus relacionamentos estabelecidos, é hora de se
 ### Conclusão
 
 Embarcar neste esforço criativo com o GPT-4 abre um reino de possibilidades na narrativa de RPG. Se você é um Mestre experiente ou está apenas começando, empregar a IA em seu kit de ferramentas narrativas pode levar a enredos de RPG vibrantes, complexos e envolventes prontos para cativar seus jogadores.
+
+## Apêndice: o resultado
+
+Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interesse gerados após a rede de relacionamentos.
+
+---
+
+### NPCs
+
+Claro! Aqui está o texto revisado:
+
+#### Dra. Evelyn Hartmann
+
+Uma arqueóloga brilhante, porém excêntrica, na casa dos 40 anos, com vasto conhecimento sobre civilizações antigas e práticas ocultas.
+
+*O que ela pode oferecer?* - Ela pode fornecer insights sobre relíquias antigas, textos e rituais relacionados aos Antigos.
+
+*Qual é o seu objetivo?* - Impedir a maquinação e salvar a humanidade da iminente destruição, mas é curiosa sobre a extensão do conhecimento e poder antigos.
+
+#### Heinrich Schultz
+
+Um ex-soldado na casa dos 30 anos, assombrado por suas experiências passadas na Grande Guerra. Ele é rústico, disciplinado, mas atormentado.
+
+*O que ele pode oferecer?* - Suas habilidades militares e conhecimento sobre as redes subterrâneas em Berlim podem ser valiosos.
+
+*Qual é o seu objetivo?* - Buscar redenção por seus atos passados e frustrar as forças malignas que ameaçam o mundo.
+
+#### Fatma Aydın
+
+Uma comerciante turca astuta na casa dos 30 anos, com conexões em mercados legais e ilegais em Istambul.
+
+*O que ela pode oferecer?* - Acesso a itens raros e exóticos, e conhecimento sobre os lugares e pessoas escondidos da cidade.
+
+*Qual é o seu objetivo?* - Proteger sua cidade e seu patrimônio das forças obscuras que se escondem por baixo.
+
+#### Inspetor George Harlow
+
+Um inspetor britânico experiente na casa dos 50 anos, meticuloso, com um olhar atento para detalhes e uma vasta rede dentro da aplicação da lei de Londres.
+
+*O que ele pode oferecer?* - Informações sobre investigações em andamento, registros criminais e acesso a alguns recursos da polícia.
+
+*Qual é o seu objetivo?* - Manter a justiça e proteger Londres dos terrores invisíveis que se escondem nas sombras.
+
+#### Hildegarde Krause
+
+Uma condessa alemã misteriosa na casa dos 40 anos, elegante, bem-falada, mas com uma aura sinistra.
+
+*O que ela pode oferecer?* - Acesso à alta sociedade e círculos políticos em Berlim, possivelmente abrigando segredos sombrios.
+
+*Qual é o seu objetivo?* - Seus motivos são incertos, mas ela parece ter um interesse direto nos antigos poderes que estão sendo buscados.
+
+#### Alastair Crowley
+
+Um ocultista notório na casa dos 40 anos, enigmático, com vasto conhecimento do arcano e uma rede de indivíduos com ideias semelhantes.
+
+*O que ele pode oferecer?* - Insights sobre o oculto, potenciais aliados (ou inimigos) dentro dos círculos esotéricos.
+
+*Qual é o seu objetivo?* - Sua natureza enigmática esconde suas verdadeiras intenções, que podem ser obscuras ou podem se alinhar com os PCs por seus próprios motivos.
+
+#### Maria Gonzalez
+
+Uma jornalista espanhola ardente na casa dos 20 anos, corajosa, com talento para se meter e sair de encrencas.
+
+*O que ela pode oferecer?* - Informações coletadas de suas investigações, acesso a arquivos de jornais e contatos em várias cidades.
+
+*Qual é o seu objetivo?* - Expor a verdade por trás das maquinações, por mais sombria que seja, ao público.
+
+#### Dimitri Ivanov
+
+Um emigrante russo na casa dos 40 anos, desencantado com o regime bolchevique, vivendo em Londres e trabalhando como investigador particular.
+
+*O que ele pode oferecer?* - Habilidades investigativas, conhecimento da comunidade expatriada russa e um desprezo pelo totalitarismo que pode impulsionar suas ações.
+
+*Qual é o seu objetivo?* - Uma vingança pessoal contra aqueles que servem forças obscuras, visando desmantelar seus planos.
+
+#### Emir Yılmaz
+
+Um historiador turco na casa dos 30 anos, quieto, introvertido, com vasto conhecimento das histórias ocultas do Império Otomano.
+
+*O que ele pode oferecer?* - Conhecimento sobre locais antigos, textos e passagens esquecidas da cidade que podem ser cruciais em Istambul.
+
+*Qual é o seu objetivo?* - Proteger o mundo dos horrores do passado que estão ressurgindo.
+
+#### Beatrice Sinclair
+
+Uma bibliotecária inglesa na casa dos 20 anos, tímida, bondosa, com uma coragem inesperada e conhecimento sobre uma vasta gama de tópicos.
+
+*O que ela pode oferecer?* - Acesso a livros raros, manuscritos e uma rede de acadêmicos que poderiam ajudar na investigação.
+
+*Qual é o seu objetivo?* - Ajudar os PCs a prevenir o despertar do Antigo, movida por um senso de dever e coragem recém-descoberta.
