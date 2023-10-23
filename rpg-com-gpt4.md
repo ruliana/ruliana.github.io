@@ -1,6 +1,6 @@
 # Criando um Enredo de RPG Envolvente com GPT-4
 
-Criar um cenário de RPG cativante requer uma mistura de imaginação, um forte senso de estrutura narrativa, e a capacidade de desenhar personagens e conflitos envolventes. Em uma virada moderna, podemos aproveitar o poder da IA, particularmente o GPT-4, para ajudar neste esforço criativo. Este post revela como usar o GPT-4 na criação de um enredo de RPG envolvente, com foco na criação de um cenário situado em uma Europa sombria dos anos 1930, repleta de intrigas e horrores eldritch.
+Criar um cenário de RPG cativante requer uma mistura de imaginação, um forte senso de estrutura narrativa, e a capacidade de desenhar personagens e conflitos envolventes. Em uma virada moderna, podemos aproveitar o poder da IA, particularmente o [GPT-4](https://chat.openai.com), para ajudar neste esforço criativo. Este post revela como usar o GPT-4 na criação de um enredo de RPG envolvente, com foco na criação de um cenário situado em uma Europa sombria dos anos 1930, repleta de intrigas e horrores eldritch.
 
 ### Passo 1: Preparando o Palco
 
