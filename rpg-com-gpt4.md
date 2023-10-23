@@ -92,12 +92,7 @@ Nota: as imagens desse post também foram geradas pelo GPT-4 baseadas nas descri
 
 ![image](https://github.com/ruliana/ruliana.github.io/assets/63543/b9d103f5-fb84-4cfb-aa3e-627b58f5a952)
 
-
-Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interesse gerados após a rede de relacionamentos.
-
 ## Introdução
-
-Essa introdução foi escrita pelo GPT-4 após a geração dos personagens e da rede de relacionamentos. Pedi que ele usasse o estilo de introdução das histórias de mistério dos anos 1930.
 
 **Sombras Sobre a Europa**
 
