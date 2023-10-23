@@ -81,11 +81,11 @@ Com um elenco de personagens e seus relacionamentos estabelecidos, é hora de se
 
 Embarcar neste esforço criativo com o GPT-4 abre um reino de possibilidades na narrativa de RPG. Se você é um Mestre experiente ou está apenas começando, empregar a IA em seu kit de ferramentas narrativas pode levar a enredos de RPG vibrantes, complexos e envolventes prontos para cativar seus jogadores.
 
+---
+
 ## Apêndice: o resultado
 
 Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interesse gerados após a rede de relacionamentos.
-
----
 
 ### NPCs
 
@@ -173,7 +173,6 @@ Uma bibliotecária inglesa na casa dos 20 anos, tímida, bondosa, com uma corage
 
 *Qual é o seu objetivo?* - Ajudar os PCs a prevenir o despertar do Antigo, movida por um senso de dever e coragem recém-descoberta.
 
----
 
 ### Os vilões 
 
