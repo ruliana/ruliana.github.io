@@ -172,3 +172,41 @@ Uma bibliotecária inglesa na casa dos 20 anos, tímida, bondosa, com uma corage
 *O que ela pode oferecer?* - Acesso a livros raros, manuscritos e uma rede de acadêmicos que poderiam ajudar na investigação.
 
 *Qual é o seu objetivo?* - Ajudar os PCs a prevenir o despertar do Antigo, movida por um senso de dever e coragem recém-descoberta.
+
+---
+
+### Os vilões 
+
+Os vilões ficaram particularmente interessantes. Note q o formato "objetico - modo de operação - conflito" foi definido pelo GPT-4 por conta própria, eu havia pedido apenas por vilões diferentes e com objetivos conflitantes.
+
+Gostei tanto do formato que pretendo reutilizá-lo em outros jogos.
+
+#### Barão Viktor Rausch
+
+Um aristocrata alemão sinistro na casa dos 50 anos, frio, calculista e obcecado por ganhar poder.
+
+*Qual é o seu objetivo maligno?* - Ele pretende aproveitar o poder do Antigo para controlar a Alemanha e depois a Europa, acreditando que pode comandar a entidade antiga.
+
+*Como ele opera?* - Utilizando sua riqueza e conexões políticas, ele financia cultos obscuros e expedições arqueológicas para desenterrar relíquias e conhecimentos proibidos.
+
+*Conflito com outros vilões?* - Despreza o caos e busca minar outros vilões que visam à destruição ou têm objetivos que ameaçam seu controle.
+
+#### Nadira Aziz
+
+Uma feiticeira egípcia enigmática na casa dos 30 anos, carismática, manipuladora, com um desejo fanático de despertar o Antigo.
+
+*Qual é o seu objetivo maligno?* - Ela acredita em cumprir uma profecia antiga para liberar o Antigo e purificar o mundo de seres indignos.
+
+*Como ela opera?* - Através de seu culto e domínio da magia negra, ela manipula outros para fazer sua vontade, infiltrando-se em organizações-chave para promover sua causa.
+
+*Conflito com outros vilões?* - Vê o desejo de controle do Barão Rausch como um patético mal-entendido do verdadeiro poder do Antigo e uma ameaça à sua visão apocalíptica.
+
+#### Capitão Lucien Duval
+
+Um caçador de tesouros francês renegado na casa dos 40 anos, implacável, oportunista, movido pela ganância e pelo fascínio do desconhecido.
+
+*Qual é o seu objetivo maligno?* - Obter relíquias e conhecimentos antigos ligados ao Antigo, vendendo-os ao maior licitante, independentemente das consequências.
+
+*Como ele opera?* - Através de uma rede de mercenários e conexões no mercado negro, ele busca e adquire artefatos proibidos, muitas vezes deixando um rastro de destruição por onde passa.
+
+*Conflito com outros vilões?* - Sua natureza mercenária e falta de motivação ideológica o colocam em conflito com o Barão Rausch e Nadira Aziz, pois ele está disposto a vender para qualquer um, potencialmente minando seus planos.
