@@ -89,7 +89,7 @@ Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interes
 
 ### NPCs
 
-Claro! Aqui está o texto revisado:
+Esse foram os NPCs gerados pelo GPT-4. A maioria dos arquétipos é bem conhecido enquanto outros são bastante curiosos.
 
 #### Dra. Evelyn Hartmann
 
@@ -97,7 +97,7 @@ Uma arqueóloga brilhante, porém excêntrica, na casa dos 40 anos, com vasto co
 
 *O que ela pode oferecer?* - Ela pode fornecer insights sobre relíquias antigas, textos e rituais relacionados aos Antigos.
 
-*Qual é o seu objetivo?* - Impedir a maquinação e salvar a humanidade da iminente destruição, mas é curiosa sobre a extensão do conhecimento e poder antigos.
+*Qual é o seu objetivo?* - Impedir a maquinação e salvar a humanidade da iminente destruição, mas é curiosa sobre a extensão do conhecimento e poderes antigos.
 
 #### Heinrich Schultz
 
@@ -113,11 +113,11 @@ Uma comerciante turca astuta na casa dos 30 anos, com conexões em mercados lega
 
 *O que ela pode oferecer?* - Acesso a itens raros e exóticos, e conhecimento sobre os lugares e pessoas escondidos da cidade.
 
-*Qual é o seu objetivo?* - Proteger sua cidade e seu patrimônio das forças obscuras que se escondem por baixo.
+*Qual é o seu objetivo?* - Proteger sua cidade e seu patrimônio das forças obscuras operando por trás das cortinas de Istambul.
 
 #### Inspetor George Harlow
 
-Um inspetor britânico experiente na casa dos 50 anos, meticuloso, com um olhar atento para detalhes e uma vasta rede dentro da aplicação da lei de Londres.
+Um inspetor britânico experiente na casa dos 50 anos, meticuloso, com um olhar atento para detalhes e uma vasta rede do lado da lei londrina.
 
 *O que ele pode oferecer?* - Informações sobre investigações em andamento, registros criminais e acesso a alguns recursos da polícia.
 
@@ -143,7 +143,7 @@ Um ocultista notório na casa dos 40 anos, enigmático, com vasto conhecimento d
 
 Uma jornalista espanhola ardente na casa dos 20 anos, corajosa, com talento para se meter e sair de encrencas.
 
-*O que ela pode oferecer?* - Informações coletadas de suas investigações, acesso a arquivos de jornais e contatos em várias cidades.
+*O que ela pode oferecer?* - Informações coletadas de suas investigações, acesso a arquivos de jornais (lembre-se, não existe internet em 1930) e contatos em várias cidades.
 
 *Qual é o seu objetivo?* - Expor a verdade por trás das maquinações, por mais sombria que seja, ao público.
 
