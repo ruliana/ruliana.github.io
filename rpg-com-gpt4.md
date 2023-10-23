@@ -216,3 +216,125 @@ Um caçador de tesouros francês renegado na casa dos 40 anos, implacável, opor
 *Como ele opera?* - Através de uma rede de mercenários e conexões no mercado negro, ele busca e adquire artefatos proibidos, muitas vezes deixando um rastro de destruição por onde passa.
 
 *Conflito com outros vilões?* - Sua natureza mercenária e falta de motivação ideológica o colocam em conflito com o Barão Rausch e Nadira Aziz, pois ele está disposto a vender para qualquer um, potencialmente minando seus planos.
+
+## Rede de relacionamentos
+
+uma malha em que cada NPC é conectado a três outros é suficiente para deixar a trama complexa e rica.
+
+```mermaid
+graph TD;
+    DA[<b>Sir Darcy Abbey</b>] -->|Velho Amigo| GH[<b>Inspetor George Harlow</b>];
+    DA -->|Mentor| DI[<b>Dimitri Ivanov</b>];
+    DA -->|Conhecido| HS[<b>Heinrich Schultz</b>];
+    EH[<b>Dra. Evelyn Hartmann</b>] -->|Colaborou| EY[<b>Emir Yılmaz</b>];
+    EH -->|Rivalidade| HK[<b>Hildegarde Krause</b>];
+    EH -->|Conheceu| MG[<b>Maria Gonzalez</b>];
+    HS -->|Serviu com| GH;
+    HS -->|Resgatou| MG;
+    HS -->|Desconfiado de| BR[<b>Barão Viktor Rausch</b>];
+    FA[<b>Fatma Aydın</b>] -->|Fornecedor| EH;
+    FA -->|Desconfia de| NA[<b>Nadira Aziz</b>];
+    FA -->|Auxiliou| BS[<b>Beatrice Sinclair</b>];
+    GH -->|Trabalhou com| DI;
+    GH -->|Trocou Informações| FA;
+    GH -->|Confrontos com| CD[<b>Capitão Lucien Duval</b>];
+    HK -->|Conhecido| BR;
+    HK -->|Patrono| AC[<b>Alastair Crowley</b>];
+    HK -->|Entrou em Conflito| EH;
+    AC -->|Rivalidade| NA;
+    AC -->|Buscou Textos| BS;
+    AC -->|Salvo por| HS;
+    MG -->|Entrevistou| GH;
+    MG -->|Ajudou| DI;
+    MG -->|Desmascarou| BR;
+    DI -->|Compartilhou Recursos| MG;
+    DI -->|Rancor| CD;
+    DI -->|Consultou| EH;
+    EY -->|Correspondência| BS;
+    EY -->|Consultou| EH;
+    EY -->|Avisado por| FA;
+    BS -->|Modelo a Seguir| EH;
+    BS -->|Ajudou| GH;
+    BS -->|Recebeu Livros| FA;
+    BR -->|Desprezo| CD;
+    BR -->|Rival Político| HK;
+    BR -->|Ultrapassou| NA;
+    NA -->|Despreza| BR;
+    NA -->|Tentou Recrutar| AC;
+    NA -->|Eliminar| CD;
+    CD -->|Vendeu Artefatos| FA;
+    CD -->|Escapou de| GH;
+    CD -->|Guerra de Lances| BR;
+```
+
+### NPCs:
+1. **Sir Darcy Abbey**:
+   - Velho amigo do Inspetor George Harlow desde os dias de serviço militar.
+   - Mentor de Dimitri Ivanov, orientando-o quando começou como detetive particular em Londres.
+   - Conhecido de Heinrich Schultz através de sua rede de espiões.
+
+2. **Dra. Evelyn Hartmann**:
+   - Colaborou com Emir Yılmaz em um artigo sobre civilizações antigas.
+   - Rivalidade profissional com Hildegarde Krause que também se aprofunda no antigo e no oculto.
+   - Conheceu Maria Gonzalez durante um simpósio sobre descobertas arqueológicas.
+
+3. **Heinrich Schultz**:
+   - Serviu sob um superior mútuo com o Inspetor George Harlow durante a Grande Guerra.
+   - Resgatou Maria Gonzalez durante um conflito em Berlim.
+   - Cruzou caminhos com o Barão Viktor Rausch na Alemanha, desconfiando de suas ambições.
+
+4. **Fatma Aydın**:
+   - Fornecedora regular de artefatos exóticos para a Dra. Evelyn Hartmann.
+   - Conhece Nadira Aziz do mercado negro de relíquias antigas, desconfia dela.
+   - Ajudou Beatrice Sinclair a adquirir raros manuscritos otomanos.
+
+5. **Inspetor George Harlow**:
+   - Trabalhou em um caso de alto perfil com Dimitri Ivanov.
+   - Trocou informações sobre redes criminosas com Fatma Aydın.
+   - Teve alguns encontros com o Capitão Lucien Duval, que sempre consegue escapar.
+
+6. **Hildegarde Krause**:
+   - Conhecida da alta sociedade do Barão Viktor Rausch, frequentando os mesmos círculos aristocráticos.
+   - Patrona discreta das práticas ocultas de Alastair Crowley.
+   - Entrou em conflito com a Dra. Evelyn Hartmann sobre a posse de um artefato raro.
+
+7. **Alastair Crowley**:
+   - Engajado em uma rivalidade arcana oculta com Nadira Aziz.
+   - Buscou textos raros da biblioteca de Beatrice Sinclair.
+   - Uma vez foi salvo por Heinrich Schultz de um perigo relacionado ao oculto.
+
+8. **Maria Gonzalez**:
+   - Entrevistou o Inspetor George Harlow para um artigo sobre o submundo criminoso de Londres.
+   - Ajudou Dimitri Ivanov a expor um político corrupto.
+   - Escreveu artigos desmascarando algumas das afirmações públicas do Barão Viktor Rausch.
+
+9. **Dimitri Ivanov**:
+   - Compartilhou recursos investigativos com Maria Gonzalez em várias ocasiões.
+   - Guarda rancor contra o Capitão Lucien Duval por uma operação fracassada.
+   - Ocasionalmente consultou a Dra. Evelyn Hartmann para contexto histórico em casos.
+
+10. **Emir Yılmaz**:
+    - Correspondência acadêmica com Beatrice Sinclair sobre textos antigos.
+    - Consultou a Dra. Evelyn Hartmann sobre a história oculta do Império Otomano.
+    - Foi avisado por Fatma Aydın sobre as intenções de Nadira Aziz.
+
+11. **Beatrice Sinclair**:
+    - Vê a Dra. Evelyn Hartmann como um modelo a seguir.
+    - Ajudou o Inspetor George Harlow com referências históricas em um caso.
+    - Recebeu livros raros da rede de Fatma Aydın.
+
+### Vilões:
+1. **Barão Viktor Rausch**:
+   - Despreza a falta de disciplina e reverência do Capitão Lucien Duval.
+   - Rival político de Hildegarde Krause nos círculos de elite de Berlim.
+   - Procura superar o culto de Nadira Aziz para controlar o poder do Ancião.
+
+2. **Nadira Aziz**:
+   - Despreza o Barão Viktor Rausch por sua arrogância e má interpretação do Ancião.
+   - Tentou recrutar Alastair Crowley por seu conhecimento oculto, sem sucesso.
+   - Quer eliminar o Capitão Lucien Duval que interfere em suas aquisições de relíquias.
+
+3. **Capitão Lucien Duval**:
+   - Vendeu artefatos roubados para Fatma Aydın, mantendo um relacionamento comercial cauteloso.
+   - Escapou da custódia do Inspetor George Harlow uma vez, um ponto de contenda entre eles.
+   - Participou de um leilão contra o Barão Viktor Rausch por uma relíquia crucial.
