@@ -89,7 +89,9 @@ Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interes
 
 ### NPCs
 
-Esse foram os NPCs gerados pelo GPT-4. A maioria dos arquétipos é bem conhecido enquanto outros são bastante curiosos.
+Esse foram os NPCs gerados pelo GPT-4. Muitos dos arquétipos são bem conhecidos enquanto outros são curiosos.
+
+Suas motivações são pouco variadas devido ao foco do cenário e ao exemplo inicial de NPC ser alinhado a ele. Para uma maior variedade, crie uma motivação diferente para o NPC de exemplo ou forneça mais exemplos.
 
 #### Dra. Evelyn Hartmann
 
