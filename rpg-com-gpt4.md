@@ -84,6 +84,8 @@ Com um elenco de personagens e seus relacionamentos estabelecidos, é hora de se
 
 Embarcar neste esforço criativo com o GPT-4 abre um reino de possibilidades na narrativa de RPG. Se você é um Mestre experiente ou está apenas começando, empregar a IA em seu kit de ferramentas narrativas pode levar a enredos de RPG vibrantes, complexos e envolventes prontos para cativar seus jogadores.
 
+Nota: as imagens desse post também foram geradas pelo GPT-4 baseadas nas descrições dos NPCs. Tente descobrir quem é quem...
+
 ---
 
 ## Apêndice: o resultado
