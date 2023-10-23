@@ -88,6 +88,8 @@ Embarcar neste esforço criativo com o GPT-4 abre um reino de possibilidades na 
 
 ## Apêndice: o resultado
 
+![image](https://github.com/ruliana/ruliana.github.io/assets/63543/7acc4058-04e7-4da3-b7c9-d71b0eab8bcf)
+
 Aqui está o resultado gerado pelo GPT-4, incluindo objetos e lugares de interesse gerados após a rede de relacionamentos.
 
 ### NPCs
