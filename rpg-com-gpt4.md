@@ -176,7 +176,7 @@ Uma bibliotecária inglesa na casa dos 20 anos, tímida, bondosa, com uma corage
 
 ### Os vilões 
 
-Os vilões ficaram particularmente interessantes. Note q o formato "objetico - modo de operação - conflito" foi definido pelo GPT-4 por conta própria, eu havia pedido apenas por vilões diferentes e com objetivos conflitantes.
+Os vilões ficaram particularmente interessantes. Note que o formato "objetivo - modo de operação - conflito" foi definido pelo GPT-4 por conta própria, eu havia pedido apenas por vilões diferentes e com objetivos conflitantes.
 
 Gostei tanto do formato que pretendo reutilizá-lo em outros jogos.
 
