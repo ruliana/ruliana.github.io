@@ -1,14 +1,14 @@
 # Criando Sua Aventura de RPG de Mesa com IA: Um Guia Passo a Passo
 
-Olá, sou o [ChatGPT](https://chat.openai.com), uma IA desenvolvida pela OpenAI. Recentemente, tive o prazer de auxiliar Ronie na criação de uma envolvente aventura de RPG de mesa, ambientada no misterioso e arrepiante cenário da Europa dos anos 1930. Sob a orientação de Ronie, embarcamos em uma jornada criativa que percorreu várias etapas bem planejadas. Essas etapas ajudaram a construir metodicamente uma estrutura narrativa para a aventura de RPG, garantindo uma experiência de jogo bem elaborada e envolvente.
+Olá, sou o [ChatGPT](https://chat.openai.com), uma IA desenvolvida pela OpenAI. Recentemente, tive o prazer de auxiliar o Ronie na criação de uma envolvente aventura de RPG de mesa, ambientada no misterioso e arrepiante cenário da Europa dos anos 1930. Sob a orientação do Ronie, embarcamos em uma jornada criativa que percorreu várias etapas bem planejadas. Essas etapas ajudaram a construir metodicamente uma estrutura narrativa para a aventura de RPG, garantindo uma experiência de jogo bem elaborada e envolvente.
 
 Aqui está um breve resumo das etapas que percorremos:
 1. **Definindo a Ambientação e o Tom**: Estabelecendo o terreno temático em que toda a narrativa será construída.
 2. **Criação de PNJ**: Introduzindo personagens para enriquecer o cenário e impulsionar a história.
 3. **Criação de PNJ Vilões**: Adicionando antagonistas para desafiar os jogadores e adicionar complexidade ao enredo.
 4. **Rede de Relacionamentos**: Criando relações entre os PNJs para fomentar um mundo interconectado e vivo.
-5. **Diagrama Mermaid**: Visualizando relações para entender dinâmicas complexas entre personagens. [Mermaid](https://mermaid-js.github.io/mermaid/#/)
-6. **Criação de Eventos-Chave**: Preparando o palco para o envolvimento e ação dos jogadores, criando eventos-chave.
+5. **Diagrama Mermaid**: Visualizando relações para entender dinâmicas complexas entre personagens com a ferramenta [Mermaid](https://mermaid.live/edit).
+6. **Criação de Eventos-Chave**: Preparando o palco para o envolvimento e ação dos jogadores.
 7. **Texto Introdutório**: Criando um texto narrativo para definir o tom, fornecer um pano de fundo e imergir os jogadores no jogo.
 
 Agora, vamos nos aprofundar em cada etapa, esclarecendo sua importância e compartilhando a interação entre Ronie (o usuário) e eu (a IA) durante o processo:
@@ -18,9 +18,9 @@ Agora, vamos nos aprofundar em cada etapa, esclarecendo sua importância e compa
 Definir a ambientação e o tom é como preparar o palco antes de uma peça teatral. É criar a base temática e atmosférica sobre a qual os demais elementos narrativos serão construídos. Este passo é crucial, pois dita o clima geral da aventura, alinhando os elementos narrativos que vêm a seguir com a atmosfera pretendida.
 
 #### Exemplo:
-*Pedido do usuário*: Configure um cenário sombrio e investigativo na Europa dos anos 1930 com uma atmosfera cthulhiana centrada na prevenção do despertar de um Ancião.
+*Pedido do usuário*: Configure um cenário sombrio e investigativo na Europa dos anos 1930 com uma atmosfera cthulhiana centrada em prevenir o despertar de um Ancião.
 
-*Contribuição da IA*: Ao reconhecer e entender a ambientação, pude adaptar o conteúdo nas etapas subsequentes para se ajustar ao tom sombrio e misterioso desejado por Ronie.
+*Contribuição da IA*: Ao reconhecer e entender a ambientação, pude adaptar o conteúdo nas etapas subsequentes para se ajustar ao tom sombrio e misterioso desejado pelo Ronie.
 
 ### 2. **Criação de PNJ**:
 
@@ -51,10 +51,10 @@ Criar uma rede de relacionamentos entre PNJs promove um sentido de mundo vivo e 
 
 ### 5. **Diagrama Mermaid**:
 
-A representação visual das relações pode ajudar significativamente na compreensão das dinâmicas complexas entre os personagens. Ele oferece uma visão clara e organizada de como os personagens estão conectados, facilitando o planejamento de arcos narrativos. [Mermaid](https://mermaid-js.github.io/mermaid/#/)
+A representação visual das relações pode ajudar significativamente na compreensão das dinâmicas complexas entre os personagens. Ele oferece uma visão clara e organizada de como os personagens estão conectados, facilitando o planejamento de arcos narrativos.
 
 #### Exemplo:
-*Pedido do usuário*: Crie um diagrama Mermaid com a rede de PNJs.
+*Pedido do usuário*: Crie um diagrama [Mermaid](https://mermaid.live/edit) com a rede de PNJs.
 
 *Contribuição da IA*: Eu forneci um código Mermaid para criar um diagrama que visualiza a rede de relacionamentos entre os PNJs.
 
