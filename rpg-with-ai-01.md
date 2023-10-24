@@ -21,6 +21,7 @@ The tone sets the emotional resonance, while the ambiance gives a sensory textur
 
 #### Example:
 *User's Request*: Set a dark, investigative scenario in 1930s Europe with cthulhian vibes centered around preventing the awakening of an Elder One.
+
 *AI's Contribution*: Acknowledging and understanding the ambiance allowed me to tailor the content in subsequent steps to fit the dark and mysterious tone desired by Ronie.
 
 ### 1. **NPC Creation**:
@@ -31,6 +32,7 @@ Moreover, NPCs serve as crucial narrative devices. They can offer help, provide 
 
 #### Example:
 *User's Request*: Generate 10 NPCs, providing a brief description, what they can offer, and their goals, using a given example as a template.
+
 *AI's Contribution*: I generated a list of NPCs based on the example provided, each with unique characteristics and potential roles in the adventure.
 
 ### 2. **Villain NPC Creation**:
@@ -41,6 +43,7 @@ Moreover, villains can reflect larger thematic elements of the narrative. They c
 
 #### Example:
 *User's Request*: Create 3 NPC villains with distinct evil, yet conflicting goals.
+
 *AI's Contribution*: I crafted three villainous NPCs, ensuring they had diverse backgrounds and conflicting objectives to introduce tension and complexity into the plot.
 
 ### 3. **Relationship Network**:
@@ -51,6 +54,7 @@ Moreover, a well-defined relationship network can provide a roadmap for how NPCs
 
 #### Example:
 *User's Request*: Create a relationship network between the NPCs, with at least three relationships for each one.
+
 *AI's Contribution*: I delineated various relationships among the NPCs, portraying alliances, rivalries, and other connections that could enrich the narrative.
 
 ### 4. **Mermaid Diagram**:
@@ -61,6 +65,7 @@ Additionally, a visual diagram serves as a quick reference guide during gameplay
 
 #### Example:
 *User's Request*: Create a Mermaid diagram with the NPC network.
+
 *AI's Contribution*: I provided a Mermaid code to create a diagram visualizing the relationship network among NPCs.
 
 ### 5. **Key Events Creation**:
@@ -71,6 +76,7 @@ Moreover, key events can serve as turning points in the story, where the actions
 
 #### Example:
 *User's Request*: Create 6 key events involving the NPCs to set the scene for the PCs to act.
+
 *AI's Contribution*: I devised key events that would entangle the PCs in the narrative, offering scenarios that would challenge them and drive the story forward.
 
 ### 6. **Introductory Text**:
@@ -81,6 +87,7 @@ Furthermore, a well-crafted introductory text can evoke the desired emotional an
 
 #### Example:
 *User's Request*: Write an introductory text to be presented to the RPG players, setting the tone for the game.
+
 *AI's Contribution*: I crafted a narrative text reflecting the desired style and tone, setting the stage for the adventure to unfold.
 
 ### Reflection:
