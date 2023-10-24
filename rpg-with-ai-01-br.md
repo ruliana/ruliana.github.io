@@ -108,19 +108,90 @@ Agora, enquanto os antigos engrenagens da malevolência avançam inexoravelmente
 
 Reúna sua determinação, mergulhe no desconhecido e que a sorte favoreça os corajosos na história arrepiante que está prestes a se desenrolar...
 
+### PNJs
 
-inesperada e conhecimento sobre uma vasta gama de tópicos.
+#### Dra. Evelyn Hartmann
+
+Uma arqueóloga brilhante, porém excêntrica, na casa dos 40 anos, com vasto conhecimento sobre civilizações antigas e práticas ocultas.
+
+*O que ela pode oferecer?* - Ela pode fornecer insights sobre relíquias antigas, textos e rituais relacionados aos Antigos.
+
+*Qual é o seu objetivo?* - Impedir a maquinação e salvar a humanidade da iminente destruição, mas é curiosa sobre a extensão do conhecimento e poderes antigos.
+
+#### Heinrich Schultz
+
+Um ex-soldado na casa dos 30 anos, assombrado por suas experiências passadas na Grande Guerra. Ele é rústico, disciplinado, mas atormentado.
+
+*O que ele pode oferecer?* - Suas habilidades militares e conhecimento sobre as redes subterrâneas em Berlim podem ser valiosos.
+
+*Qual é o seu objetivo?* - Buscar redenção por seus atos passados e frustrar as forças malignas que ameaçam o mundo.
+
+#### Fatma Aydın
+
+Uma comerciante turca astuta na casa dos 30 anos, com conexões em mercados legais e ilegais em Istambul.
+
+*O que ela pode oferecer?* - Acesso a itens raros e exóticos, e conhecimento sobre os lugares e pessoas escondidos da cidade.
+
+*Qual é o seu objetivo?* - Proteger sua cidade e seu patrimônio das forças obscuras operando por trás das cortinas de Istambul.
+
+#### Inspetor George Harlow
+
+Um inspetor britânico experiente na casa dos 50 anos, meticuloso, com um olhar atento para detalhes e uma vasta rede do lado da lei londrina.
+
+*O que ele pode oferecer?* - Informações sobre investigações em andamento, registros criminais e acesso a alguns recursos da polícia.
+
+*Qual é o seu objetivo?* - Manter a justiça e proteger Londres dos terrores invisíveis que se escondem nas sombras.
+
+#### Hildegarde Krause
+
+Uma condessa alemã misteriosa na casa dos 40 anos, elegante, bem-falada, mas com uma aura sinistra.
+
+*O que ela pode oferecer?* - Acesso à alta sociedade e círculos políticos em Berlim, possivelmente abrigando segredos sombrios.
+
+*Qual é o seu objetivo?* - Seus motivos são incertos, mas ela parece ter um interesse direto nos antigos poderes que estão sendo buscados.
+
+#### Alastair Crowley
+
+Um ocultista notório na casa dos 40 anos, enigmático, com vasto conhecimento do arcano e uma rede de indivíduos com ideias semelhantes.
+
+*O que ele pode oferecer?* - Insights sobre o oculto, potenciais aliados (ou inimigos) dentro dos círculos esotéricos.
+
+*Qual é o seu objetivo?* - Sua natureza enigmática esconde suas verdadeiras intenções, que podem ser obscuras ou podem se alinhar com os PJs por seus próprios motivos.
+
+#### Maria Gonzalez
+
+Uma jornalista espanhola ardente na casa dos 20 anos, corajosa, com talento para se meter e sair de encrencas.
+
+*O que ela pode oferecer?* - Informações coletadas de suas investigações, acesso a arquivos de jornais (lembre-se, não existe internet em 1930) e contatos em várias cidades.
+
+*Qual é o seu objetivo?* - Expor a verdade por trás das maquinações, por mais sombria que seja, ao público.
+
+#### Dimitri Ivanov
+
+Um emigrante russo na casa dos 40 anos, desencantado com o regime bolchevique, vivendo em Londres e trabalhando como investigador particular.
+
+*O que ele pode oferecer?* - Habilidades investigativas, conhecimento da comunidade expatriada russa e um desprezo pelo totalitarismo que pode impulsionar suas ações.
+
+*Qual é o seu objetivo?* - Uma vingança pessoal contra aqueles que servem forças obscuras, visando desmantelar seus planos.
+
+#### Emir Yılmaz
+
+Um historiador turco na casa dos 30 anos, quieto, introvertido, com vasto conhecimento das histórias ocultas do Império Otomano.
+
+*O que ele pode oferecer?* - Conhecimento sobre locais antigos, textos e passagens esquecidas da cidade que podem ser cruciais em Istambul.
+
+*Qual é o seu objetivo?* - Proteger o mundo dos horrores do passado que estão ressurgindo.
+
+#### Beatrice Sinclair
+
+Uma bibliotecária inglesa na casa dos 20 anos, tímida, bondosa, com uma coragem inesperada e conhecimento sobre uma vasta gama de tópicos.
 
 *O que ela pode oferecer?* - Acesso a livros raros, manuscritos e uma rede de acadêmicos que poderiam ajudar na investigação.
 
-*Qual é o seu objetivo?* - Ajudar os PCs a prevenir o despertar do Antigo, movida por um senso de dever e coragem recém-descoberta.
+*Qual é o seu objetivo?* - Ajudar os PJs a prevenir o despertar do Antigo, movida por um senso de dever e coragem recém-descoberta.
 
 
 ### Os vilões 
-
-Os vilões ficaram particularmente interessantes. Note que o formato "objetivo - modo de operação - conflito" foi definido pelo GPT-4 por conta própria, eu havia pedido apenas por vilões diferentes e com objetivos conflitantes.
-
-Gostei tanto do formato que pretendo reutilizá-lo em outros jogos.
 
 #### Barão Viktor Rausch
 
@@ -152,11 +223,10 @@ Um caçador de tesouros francês renegado na casa dos 40 anos, implacável, opor
 
 *Conflito com outros vilões?* - Sua natureza mercenária e falta de motivação ideológica o colocam em conflito com o Barão Rausch e Nadira Aziz, pois ele está disposto a vender para qualquer um, potencialmente minando seus planos.
 
+
 ## Rede de relacionamentos
 
 ![image](https://github.com/ruliana/ruliana.github.io/assets/63543/7acc4058-04e7-4da3-b7c9-d71b0eab8bcf)
-
-uma malha em que cada NPC é conectado a três outros é suficiente para deixar a trama complexa e rica.
 
 ```mermaid
 graph TD;
@@ -204,7 +274,7 @@ graph TD;
     CD -->|Guerra de Lances| BR;
 ```
 
-### NPCs:
+### PNJs:
 1. **Sir Darcy Abbey**:
    - Velho amigo do Inspetor George Harlow desde os dias de serviço militar.
    - Mentor de Dimitri Ivanov, orientando-o quando começou como detetive particular em Londres.
