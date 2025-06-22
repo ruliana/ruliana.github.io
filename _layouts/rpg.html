@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<div class="rpg-game">
+  <header class="rpg-header">
+    <h1>{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+    
+    <div class="game-meta">
+      {% if page.status %}
+      <span class="status status-{{ page.status | downcase }}">{{ page.status }}</span>
+      {% endif %}
+      {% if page.version %}
+      <span class="version">v{{ page.version }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="game-info">
+    <div class="info-grid">
+      {% if page.players %}
+      <div class="info-item">
+        <strong>Players:</strong> {{ page.players }}
+      </div>
+      {% endif %}
+      {% if page.game_master %}
+      <div class="info-item">
+        <strong>Game Master:</strong> {{ page.game_master }}
+      </div>
+      {% endif %}
+      {% if page.play_time %}
+      <div class="info-item">
+        <strong>Play Time:</strong> {{ page.play_time }}
+      </div>
+      {% endif %}
+      {% if page.genre %}
+      <div class="info-item">
+        <strong>Genre:</strong> {{ page.genre }}
+      </div>
+      {% endif %}
+      {% if page.mechanics %}
+      <div class="info-item">
+        <strong>Mechanics:</strong> {{ page.mechanics }}
+      </div>
+      {% endif %}
+      {% if page.setting %}
+      <div class="info-item">
+        <strong>Setting:</strong> {{ page.setting }}
+      </div>
+      {% endif %}
+      {% if page.difficulty %}
+      <div class="info-item">
+        <strong>Difficulty:</strong> {{ page.difficulty }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if page.downloads %}
+  <div class="downloads">
+    <h2>Downloads</h2>
+    <div class="download-grid">
+      {% for download in page.downloads %}
+      <a href="{{ download.url }}" class="download-link" target="_blank">
+        <i class="fas fa-download"></i>
+        <span class="download-name">{{ download.name }}</span>
+        <span class="download-type">{{ download.type }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="game-content">
+    {{ content }}
+  </div>
+</div>

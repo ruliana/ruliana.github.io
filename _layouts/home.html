@@ -1,0 +1,139 @@
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">{{ site.title }}</h1>
+            <p class="hero-subtitle">{{ site.description }}</p>
+            <div class="hero-actions">
+                <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">Read Blog</a>
+                <a href="{{ '/rpg/' | relative_url }}" class="btn btn-outline">Explore RPGs</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-cards">
+                <div class="card ml-card">
+                    <i class="fas fa-brain"></i>
+                    <span>ML Engineering</span>
+                </div>
+                <div class="card rpg-card">
+                    <i class="fas fa-dice-d20"></i>
+                    <span>TTRPG Design</span>
+                </div>
+                <div class="card code-card">
+                    <i class="fas fa-code"></i>
+                    <span>Code Adventures</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Content -->
+<section class="featured">
+    <div class="container">
+        <h2 class="section-title">Featured Content</h2>
+        
+        <!-- Latest Blog Posts -->
+        <div class="content-grid">
+            <div class="content-section">
+                <h3>Latest Blog Posts</h3>
+                {% if site.posts.size > 0 %}
+                <div class="post-grid">
+                    {% for post in site.posts limit:3 %}
+                    <article class="post-card">
+                        <div class="post-meta">
+                            <time>{{ post.date | date: "%B %d, %Y" }}</time>
+                            {% if post.tags %}
+                            <div class="post-tags">
+                                {% for tag in post.tags limit:2 %}
+                                <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+                        <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
+                    </article>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p>Coming soon! Blog posts will be published here.</p>
+                {% endif %}
+                <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline">View All Posts</a>
+            </div>
+            
+            <!-- RPG Games -->
+            <div class="content-section">
+                <h3>RPG Games</h3>
+                <div class="rpg-showcase">
+                    <div class="rpg-item">
+                        <div class="rpg-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="rpg-content">
+                            <h4>The Four Foxes</h4>
+                            <p>An investigative diceless RPG set in 1926. Fast-paced with distinctive characters and lots of personality.</p>
+                            <div class="rpg-downloads">
+                                <a href="{{ '/files/the_four_foxes_all_brothers_1.7.1.pdf' | relative_url }}" class="download-link">Brothers Version</a>
+                                <a href="{{ '/files/the_four_foxes_all_sisters_1.7.1.pdf' | relative_url }}" class="download-link">Sisters Version</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rpg-item">
+                        <div class="rpg-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="rpg-content">
+                            <h4>The Timeline</h4>
+                            <p>A Powered by the Apocalypse time travel RPG with one timeline. Mind-twisting gameplay in four dimensions.</p>
+                            <div class="rpg-downloads">
+                                <a href="{{ '/files/the_timeline_v0.5.0.pdf' | relative_url }}" class="download-link">Download Alpha</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ '/rpg/' | relative_url }}" class="btn btn-outline">Explore All RPGs</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Preview -->
+<section class="projects-preview">
+    <div class="container">
+        <h2 class="section-title">Recent Projects</h2>
+        {% if site.projects.size > 0 %}
+        <div class="project-grid">
+            {% for project in site.projects limit:3 %}
+            <div class="project-card">
+                <div class="project-header">
+                    <h4><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h4>
+                    {% if project.tech_stack %}
+                    <div class="tech-stack">
+                        {% for tech in project.tech_stack limit:3 %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <p>{{ project.description | truncate: 100 }}</p>
+                {% if project.github_url %}
+                <a href="{{ project.github_url }}" class="project-link">View on GitHub →</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Project showcases coming soon!</p>
+        {% endif %}
+        <a href="{{ '/projects/' | relative_url }}" class="btn btn-outline">View All Projects</a>
+    </div>
+</section>
+
+{{ content }}

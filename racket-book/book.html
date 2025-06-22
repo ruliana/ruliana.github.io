@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-03-15 Tue 09:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Racket for the Masses</title>
+<meta name="author" content="Ronie Uliana" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Racket for the Masses</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5f23b4b">1. Introduction</a></li>
+<li><a href="#orgec37ef3">2. Racket in 20 minutes or less</a>
+<ul>
+<li><a href="#orgab5a6cc">2.1. How to use functions</a></li>
+<li><a href="#org3032078">2.2. Things that are not functions look like functions</a>
+<ul>
+<li><a href="#org5966946">2.2.1. Math looks like functions</a></li>
+<li><a href="#orgf1b8ad1">2.2.2. Control structures look like functions</a></li>
+<li><a href="#org032708a">2.2.3. Variable assigment looks like functions</a></li>
+<li><a href="#org422961b">2.2.4. Function definitions also look like function calls</a></li>
+<li><a href="#org37aac5f">2.2.5. Anonymous functions look like functions</a></li>
+<li><a href="#orgc3c8a07">2.2.6. We call them &ldquo;forms&rdquo;</a></li>
+</ul>
+</li>
+<li><a href="#orgf9fec12">2.3. Function are just variables</a>
+<ul>
+<li><a href="#org69776c6">2.3.1. They are cheap</a></li>
+<li><a href="#org1827ea0">2.3.2. They are passed as arguments or attributed to variables</a></li>
+</ul>
+</li>
+<li><a href="#org0c896e3">2.4. Polymorphism was introduced later</a></li>
+<li><a href="#orgc3f3c71">2.5. Peculiarities</a>
+<ul>
+<li><a href="#org4318803">2.5.1. There is a small set of symbols that are reserved: <code>() [] {} # |</code>, everything else can be overwritten.</a></li>
+<li><a href="#org29012f2">2.5.2. The language uses dashes for separate words in identifiers, like <code>string-append</code> or <code>vector-ref</code>.</a></li>
+<li><a href="#org17dc725">2.5.3. There is no operator for &ldquo;not equal&rdquo; like <code>!=</code>. Conditionals have an inverse counterpart (like <code>when</code> and <code>unless</code>), we use <code>(not x)</code>, <code>(negate f)</code>, or just the structure the code to avoid the negation.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9b04df7">3. Programming Language Oriented</a>
+<ul>
+<li><a href="#org1cf5885">3.1. Create the language to solve your problem</a></li>
+<li><a href="#orge518a31">3.2. All languages are interoperable</a>
+<ul>
+<li><a href="#org64b8a9f">3.2.1. Each file is a different language</a></li>
+</ul>
+</li>
+<li><a href="#org1d91226">3.3. Do not be afraid of Macros</a>
+<ul>
+<li><a href="#orgc2dc4e8">3.3.1. They are a basic component of Racket</a></li>
+<li><a href="#orgf55c083">3.3.2. They are cheap, done in compiling time</a></li>
+<li><a href="#orgf420651">3.3.3. They can be difficult to debug, so keep them short</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5f23b4b" class="outline-2">
+<h2 id="org5f23b4b"><span class="section-number-2">1.</span> Introduction</h2>
+</div>
+
+<div id="outline-container-orgec37ef3" class="outline-2">
+<h2 id="orgec37ef3"><span class="section-number-2">2.</span> Racket in 20 minutes or less</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgab5a6cc" class="outline-3">
+<h3 id="orgab5a6cc"><span class="section-number-3">2.1.</span> How to use functions</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+While functions in any other language look like this <code class="src src-ruby">string_append(<span style="color: #539AFC;">"a"</span>, <span style="color: #539AFC;">"b"</span>, <span style="color: #539AFC;">"c"</span>)</code>, in Racket they are written <code class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">string-append</span> <span style="color: #539AFC;">"a"</span> <span style="color: #539AFC;">"b"</span> <span style="color: #539AFC;">"c"</span><span style="color: #5EC4FF;">)</span></code>. The open parenthesis is put before the function name and there is no comma separating arguments.
+</p>
+
+<p>
+Play close attention to that because everything else is based on that format. In general, to call a function the format is:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span>function-name arg1 arg2 arg3 <span style="color: #5EC4FF;">...</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3032078" class="outline-3">
+<h3 id="org3032078"><span class="section-number-3">2.2.</span> Things that are not functions look like functions</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org5966946" class="outline-4">
+<h4 id="org5966946"><span class="section-number-4">2.2.1.</span> Math looks like functions</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Math has no special representation nor it changes the way the code is normally evaluated.
+</p>
+
+<p>
+So, this in most languages:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #E27E8D; font-weight: bold;">1</span> + <span style="color: #E27E8D; font-weight: bold;">2</span> + <span style="color: #E27E8D; font-weight: bold;">3</span> * <span style="color: #E27E8D; font-weight: bold;">4</span> * <span style="color: #E27E8D; font-weight: bold;">5</span>
+</pre>
+</div>
+
+<p>
+Is written in Racket like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">+</span> <span style="color: #E27E8D; font-weight: bold;">1</span> <span style="color: #E27E8D; font-weight: bold;">2</span> <span style="color: #E27E8D;">(</span><span style="color: #5EC4FF;">*</span> <span style="color: #E27E8D; font-weight: bold;">3</span> <span style="color: #E27E8D; font-weight: bold;">4</span> <span style="color: #E27E8D; font-weight: bold;">5</span><span style="color: #E27E8D;">)</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf1b8ad1" class="outline-4">
+<h4 id="orgf1b8ad1"><span class="section-number-4">2.2.2.</span> Control structures look like functions</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Other languages have &ldquo;commands&rdquo;, reserved words, and special syntaxes for <b>control structures</b>. There is no such things in Racket. For example, <code>if</code> is usually reserved in other languages and have a special structure:
+</p>
+
+<p>
+In Ruby, it is:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #5EC4FF;">if</span> a == b
+  <span style="color: #E27E8D; font-weight: bold;">1</span>
+<span style="color: #5EC4FF;">else</span>
+  <span style="color: #E27E8D; font-weight: bold;">2</span>
+<span style="color: #5EC4FF;">end</span>
+</pre>
+</div>
+
+<p>
+Or in Javascript:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">a === b ? <span style="color: #E27E8D; font-weight: bold;">1</span> : <span style="color: #E27E8D; font-weight: bold;">2</span>;
+</pre>
+</div>
+
+<p>
+The equivalent in Racket is:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">if</span> <span style="color: #E27E8D;">(</span><span style="color: #5EC4FF;">=</span> a b<span style="color: #E27E8D;">)</span> <span style="color: #E27E8D; font-weight: bold;">1</span> <span style="color: #E27E8D; font-weight: bold;">2</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+
+<p>
+Note that it looks exactly like a function call.
+</p>
+</div>
+</div>
+<div id="outline-container-org032708a" class="outline-4">
+<h4 id="org032708a"><span class="section-number-4">2.2.3.</span> Variable assigment looks like functions</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+A variable assignment (called <b>binding</b> in Racket) usually has a special structure in other languages. In Racket they look like functions, as everything else.
+</p>
+
+<p>
+Variable assignment in Ruby:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">a = <span style="color: #E27E8D; font-weight: bold;">1</span>
+</pre>
+</div>
+
+<p>
+In Racket:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">define</span> <span style="color: #718CA1;">a</span> <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org422961b" class="outline-4">
+<h4 id="org422961b"><span class="section-number-4">2.2.4.</span> Function definitions also look like function calls</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+Any other language have well defined syntaxes and reserved keywords for defining functions, methods, classes and so on.
+</p>
+
+<p>
+For example, a function in Python is defined like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #5EC4FF;">def</span> <span style="color: #33CED8;">add1</span>(a):
+    <span style="color: #5EC4FF;">return</span> a + <span style="color: #E27E8D; font-weight: bold;">1</span>
+
+add1(<span style="color: #E27E8D; font-weight: bold;">10</span>)
+</pre>
+</div>
+
+<p>
+In Racket, defining a function looks like we are just <i>calling</i> the function <code>define</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">define</span> <span style="color: #E27E8D;">(</span><span style="color: #33CED8;">add1</span> a<span style="color: #E27E8D;">)</span> <span style="color: #E27E8D;">(</span><span style="color: #5EC4FF;">+</span> a <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #E27E8D;">)</span><span style="color: #5EC4FF;">)</span>
+<span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">add1</span> <span style="color: #E27E8D; font-weight: bold;">10</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org37aac5f" class="outline-4">
+<h4 id="org37aac5f"><span class="section-number-4">2.2.5.</span> Anonymous functions look like functions</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+Anonymous functions or code block in other languages also have special syntaxes. For example, a code block in Ruby looks like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">add1 = -&gt; a { a + <span style="color: #E27E8D; font-weight: bold;">1</span> }
+add1[<span style="color: #E27E8D; font-weight: bold;">10</span>]
+</pre>
+</div>
+
+<pre class="example">
+11
+</pre>
+
+
+<p>
+In Racket they still look like functions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">define</span> <span style="color: #718CA1;">add1</span> <span style="color: #E27E8D;">(</span><span style="color: #5EC4FF;">lambda</span> <span style="color: #8BD49C;">(</span>a<span style="color: #8BD49C;">)</span> <span style="color: #8BD49C;">(</span><span style="color: #5EC4FF;">+</span> a <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #8BD49C;">)</span><span style="color: #E27E8D;">)</span><span style="color: #5EC4FF;">)</span>
+<span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">add1</span> <span style="color: #E27E8D; font-weight: bold;">10</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+
+<p>
+Or using the character &ldquo;λ&rdquo; instead of the word &ldquo;lambda&rdquo;.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">define</span> <span style="color: #718CA1;">add1</span> <span style="color: #E27E8D;">(</span><span style="color: #5EC4FF;">&#955;</span> <span style="color: #8BD49C;">(</span>a<span style="color: #8BD49C;">)</span> <span style="color: #8BD49C;">(</span><span style="color: #5EC4FF;">+</span> a <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #8BD49C;">)</span><span style="color: #E27E8D;">)</span><span style="color: #5EC4FF;">)</span>
+<span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">add1</span> <span style="color: #E27E8D; font-weight: bold;">10</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+11
+</pre>
+
+
+<p>
+However, for simple functions like that, it is common to just use currying.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">define</span> <span style="color: #718CA1;">add1</span> <span style="color: #E27E8D;">(</span><span style="color: #5EC4FF;">curry</span> <span style="color: #5EC4FF;">+</span> <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #E27E8D;">)</span><span style="color: #5EC4FF;">)</span>
+<span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">add1</span> <span style="color: #E27E8D; font-weight: bold;">10</span><span style="color: #5EC4FF;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+11
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc3c8a07" class="outline-4">
+<h4 id="orgc3c8a07"><span class="section-number-4">2.2.6.</span> We call them &ldquo;forms&rdquo;</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<p>
+Given that the syntax for functions and everything else looks exactly the same, we need a name for them. In Racket they are called <i>forms</i>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf9fec12" class="outline-3">
+<h3 id="orgf9fec12"><span class="section-number-3">2.3.</span> Function are just variables</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org69776c6" class="outline-4">
+<h4 id="org69776c6"><span class="section-number-4">2.3.1.</span> They are cheap</h4>
+<div class="outline-text-4" id="text-2-3-1">
+</div>
+<ol class="org-ol">
+<li><a id="org6c4ffcf"></a>It is common to use them to reduce nesting<br /></li>
+</ol>
+</div>
+<div id="outline-container-org1827ea0" class="outline-4">
+<h4 id="org1827ea0"><span class="section-number-4">2.3.2.</span> They are passed as arguments or attributed to variables</h4>
+</div>
+</div>
+<div id="outline-container-org0c896e3" class="outline-3">
+<h3 id="org0c896e3"><span class="section-number-3">2.4.</span> Polymorphism was introduced later</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Racket is a Scheme-like language which is quite old. So old that is predates polymorphism or method/function overloading. That means we still have a lot of functions that are prefixed by the type of data they act upon.
+</p>
+
+<p>
+For example, to get the second value of:
+</p>
+<ul class="org-ul">
+<li>A list: we can write <code class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">list-ref</span> my-list <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #5EC4FF;">)</span></code></li>
+<li>A vector, we should write <code class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">vector-ref</span> my-vector <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #5EC4FF;">)</span></code>.</li>
+<li>A hash, it would be <code class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">dict-ref</span> my-dict <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #5EC4FF;">)</span></code>.</li>
+</ul>
+
+<p>
+However, now Racket supports polymorphism and modern code can use functions like:
+</p>
+<ul class="org-ul">
+<li><code class="src src-racket"><span style="color: #5EC4FF;">(</span><span style="color: #5EC4FF;">sequence-ref</span> anything <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #5EC4FF;">)</span></code> if we use the standard library.</li>
+<li><code class="src src-racket"><span style="color: #5EC4FF;">(</span>ref anything <span style="color: #E27E8D; font-weight: bold;">1</span><span style="color: #5EC4FF;">)</span></code> if we use the excellent <a href="https://docs.racket-lang.org/collections/index.html">Generic Collections</a> library.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc3f3c71" class="outline-3">
+<h3 id="orgc3f3c71"><span class="section-number-3">2.5.</span> Peculiarities</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org4318803" class="outline-4">
+<h4 id="org4318803"><span class="section-number-4">2.5.1.</span> There is a small set of symbols that are reserved: <code>() [] {} # |</code>, everything else can be overwritten.</h4>
+</div>
+<div id="outline-container-org29012f2" class="outline-4">
+<h4 id="org29012f2"><span class="section-number-4">2.5.2.</span> The language uses dashes for separate words in identifiers, like <code>string-append</code> or <code>vector-ref</code>.</h4>
+</div>
+<div id="outline-container-org17dc725" class="outline-4">
+<h4 id="org17dc725"><span class="section-number-4">2.5.3.</span> There is no operator for &ldquo;not equal&rdquo; like <code>!=</code>. Conditionals have an inverse counterpart (like <code>when</code> and <code>unless</code>), we use <code>(not x)</code>, <code>(negate f)</code>, or just the structure the code to avoid the negation.</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org9b04df7" class="outline-2">
+<h2 id="org9b04df7"><span class="section-number-2">3.</span> Programming Language Oriented</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org1cf5885" class="outline-3">
+<h3 id="org1cf5885"><span class="section-number-3">3.1.</span> Create the language to solve your problem</h3>
+</div>
+<div id="outline-container-orge518a31" class="outline-3">
+<h3 id="orge518a31"><span class="section-number-3">3.2.</span> All languages are interoperable</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org64b8a9f" class="outline-4">
+<h4 id="org64b8a9f"><span class="section-number-4">3.2.1.</span> Each file is a different language</h4>
+<div class="outline-text-4" id="text-3-2-1">
+</div>
+<ol class="org-ol">
+<li><a id="org2056406"></a>The truth is, a file is a module<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org1d91226" class="outline-3">
+<h3 id="org1d91226"><span class="section-number-3">3.3.</span> Do not be afraid of Macros</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-orgc2dc4e8" class="outline-4">
+<h4 id="orgc2dc4e8"><span class="section-number-4">3.3.1.</span> They are a basic component of Racket</h4>
+</div>
+<div id="outline-container-orgf55c083" class="outline-4">
+<h4 id="orgf55c083"><span class="section-number-4">3.3.2.</span> They are cheap, done in compiling time</h4>
+</div>
+<div id="outline-container-orgf420651" class="outline-4">
+<h4 id="orgf420651"><span class="section-number-4">3.3.3.</span> They can be difficult to debug, so keep them short</h4>
+<div class="outline-text-4" id="text-3-3-3">
+</div>
+<ol class="org-ol">
+<li><a id="org3c13dfd"></a>If you using them locally, do not refrain yourself<br /></li>
+<li><a id="org0cad9a5"></a>If you are building a library, spend time making them bullet-proof and on error messages.<br /></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Ronie Uliana</p>
+<p class="date">Created: 2022-03-15 Tue 09:50</p>
+</div>
+</body>
+</html>
