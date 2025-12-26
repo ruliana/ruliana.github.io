@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satisfactory Bridge Planner</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        :root {
+            --border-color: #e0e0e0;
+            --bg-light: #f8f9fa;
+            --accent-color: #667eea;
+            --text-dark: #333;
+            --text-medium: #666;
+            --text-light: #555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 0;
+        }
+
+        .controls {
+            background: var(--bg-light);
+            padding: 30px;
+            border-right: 2px solid var(--border-color);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+
+        .control-group input,
+        .control-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .control-group input:focus,
+        .control-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .control-group .unit {
+            color: var(--text-medium);
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+
+        .visualization {
+            padding: 30px;
+        }
+
+        canvas {
+            width: 100%;
+            display: block;
+            background: white;
+        }
+
+        .stats {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .stats h3 {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .stat-value {
+            color: var(--text-dark);
+            font-family: 'Courier New', monospace;
+        }
+
+        .cable-points {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+        }
+
+        .cable-points h4 {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            position: sticky;
+            top: 0;
+            background: white;
+            padding-bottom: 10px;
+        }
+
+        .point {
+            font-family: 'Courier New', monospace;
+            padding: 4px 0;
+            font-size: 0.9em;
+            color: var(--text-light);
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .bordered-box {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" x-data="bridgePlanner()">
+        <div class="header">
+            <h1>🌉 Satisfactory Bridge Planner</h1>
+            <p>Plan your suspension bridges with precision</p>
+        </div>
+
+        <div class="content">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="length">Bridge Length (meters)</label>
+                    <input type="number" id="length" x-model.number="length" min="8" step="1">
+                    <div class="unit">works best with lengths divisible by Snap X</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="height">Tower Height (meters)</label>
+                    <input type="number" id="height" x-model.number="height" step="1">
+                    <div class="unit">positive = above ground, negative = below ground</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="sag">Cable Sag (meters)</label>
+                    <input type="number" id="sag" x-model.number="sag" step="1">
+                    <div class="unit">positive = hangs down, negative = arcs up</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="snapX">Snap X (meters)</label>
+                    <input type="number" id="snapX" x-model.number="snapX" min="1" step="1">
+                    <div class="unit">horizontal spacing between attachment points (8m = 1 foundation)</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="snapY">Snap Y (meters)</label>
+                    <input type="number" id="snapY" x-model.number="snapY" min="1" step="1">
+                    <div class="unit">vertical grid spacing for cable height</div>
+                </div>
+
+                <div class="stats">
+                    <h3>📊 Statistics</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Attachment Points:</span>
+                        <span class="stat-value" x-text="snappedPoints.length"></span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Cable Segments:</span>
+                        <span class="stat-value" x-text="snappedPoints.length - 1"></span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Max Error:</span>
+                        <span class="stat-value" x-text="maxError.toFixed(3) + 'm'"></span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Avg Error:</span>
+                        <span class="stat-value" x-text="avgError.toFixed(3) + 'm'"></span>
+                    </div>
+                </div>
+
+                <div class="cable-points bordered-box">
+                    <h4>📍 Snapping Points (x, y)</h4>
+                    <template x-for="(point, i) in snappedPoints" :key="i">
+                        <div class="point" x-text="`Point ${i + 1}: (${point[0]}, ${point[1]})`"></div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="visualization">
+                <canvas class="bordered-box" x-ref="canvas" width="800" height="600"></canvas>
+                
+                <div class="legend bordered-box">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #4CAF50;"></div>
+                        <span>Ideal Parabola</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FF5722; height: 4px;"></div>
+                        <span>Snapped Cable (Integer Positions)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #2196F3; height: 6px;"></div>
+                        <span>Towers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
