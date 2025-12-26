@@ -193,6 +193,175 @@
             border: 2px solid var(--border-color);
             border-radius: 8px;
         }
+
+        /* ============================================ */
+        /* RESPONSIVE DESIGN - Mobile & Tablet Styles  */
+        /* ============================================ */
+
+        /* Mobile Portrait: < 768px */
+        @media (max-width: 767px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.75em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .controls {
+                order: 2;
+                border-right: none;
+                border-bottom: 2px solid var(--border-color);
+                padding: 20px;
+            }
+
+            .visualization {
+                order: 1;
+                padding: 20px;
+            }
+
+            .control-group {
+                margin-bottom: 15px;
+            }
+
+            .control-group input,
+            .control-group select {
+                padding: 10px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .control-group label {
+                font-size: 0.85em;
+                margin-bottom: 6px;
+            }
+
+            .control-group .unit {
+                font-size: 0.75em;
+                margin-top: 3px;
+            }
+
+            .stats {
+                margin-top: 15px;
+                padding: 12px;
+            }
+
+            .stats h3 {
+                font-size: 0.95em;
+                margin-bottom: 10px;
+            }
+
+            .stat-label {
+                font-size: 0.8em;
+            }
+
+            .stat-value {
+                font-size: 0.85em;
+            }
+
+            .cable-points {
+                margin-top: 15px;
+                max-height: 180px;
+                padding: 10px;
+            }
+
+            .cable-points h4 {
+                font-size: 0.9em;
+            }
+
+            .point {
+                font-size: 0.75em;
+                padding: 3px 0;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 12px;
+                padding: 10px;
+            }
+
+            .legend-item span {
+                font-size: 0.8em;
+            }
+
+            canvas {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        /* Mobile Landscape: 768px - 1023px */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                order: 2;
+                border-right: none;
+                border-bottom: 2px solid var(--border-color);
+                padding: 25px;
+            }
+
+            .visualization {
+                order: 1;
+                padding: 25px;
+            }
+
+            .control-group input,
+            .control-group select {
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .control-group label {
+                font-size: 0.9em;
+            }
+
+            .control-group .unit {
+                font-size: 0.8em;
+            }
+
+            canvas {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        /* Tablet: 1024px - 1279px */
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            .content {
+                grid-template-columns: 280px 1fr;
+            }
+
+            .controls {
+                padding: 25px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -263,7 +432,7 @@
             </div>
 
             <div class="visualization">
-                <canvas class="bordered-box" x-ref="canvas" width="800" height="600"></canvas>
+                <canvas class="bordered-box" x-ref="canvas"></canvas>
                 
                 <div class="legend bordered-box">
                     <div class="legend-item">

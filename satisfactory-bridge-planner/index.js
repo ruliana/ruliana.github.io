@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Satisfactory Bridge Planner - TypeScript Implementation
  * Alpine.js component for planning suspension bridges with precision
@@ -30,6 +31,16 @@ function bridgePlanner() {
             this.$watch('sag', () => this.calculate());
             this.$watch('snapX', () => this.calculate());
             this.$watch('snapY', () => this.calculate());
+            // Initialize canvas size
+            this.resizeCanvas();
+            // Add window resize listener with debouncing
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    this.resizeCanvas();
+                }, 150);
+            });
         },
         // ========================
         // Drawing helper functions
@@ -45,11 +56,20 @@ function bridgePlanner() {
             ctx.lineTo(x, y2);
             ctx.stroke();
         },
-        drawLabel(ctx, text, x, y, align = 'center') {
+        drawLabel(ctx, text, x, y, align = 'center', rotation = 0) {
+            ctx.save();
             ctx.fillStyle = '#666';
             ctx.font = '12px sans-serif';
             ctx.textAlign = align;
-            ctx.fillText(text, x, y);
+            if (rotation !== 0) {
+                ctx.translate(x, y);
+                ctx.rotate(rotation * Math.PI / 180);
+                ctx.fillText(text, 0, 0);
+            }
+            else {
+                ctx.fillText(text, x, y);
+            }
+            ctx.restore();
         },
         setStrokeStyle(ctx, color, width, lineCap = 'butt') {
             ctx.strokeStyle = color;
@@ -130,6 +150,37 @@ function bridgePlanner() {
                 this.maxError = Math.max(...errors);
                 this.avgError = errors.reduce((a, b) => a + b) / errors.length;
             }
+        },
+        resizeCanvas() {
+            const canvas = this.$refs.canvas;
+            if (!canvas)
+                return;
+            const container = canvas.parentElement;
+            if (!container)
+                return;
+            const containerWidth = container.clientWidth;
+            // Calculate dimensions based on viewport
+            const isMobile = window.innerWidth < 768;
+            const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+            // Set canvas dimensions with proper aspect ratio
+            if (isMobile) {
+                // Mobile: use most of container width, 4:3 aspect ratio
+                canvas.width = containerWidth - 40;
+                canvas.height = (containerWidth - 40) * 0.75;
+            }
+            else if (isTablet) {
+                // Tablet: slightly wider, maintain 4:3
+                canvas.width = containerWidth - 50;
+                canvas.height = (containerWidth - 50) * 0.75;
+            }
+            else {
+                // Desktop: use fixed dimensions or container-based
+                const maxWidth = Math.min(containerWidth - 60, 800);
+                canvas.width = maxWidth;
+                canvas.height = maxWidth * 0.75; // 4:3 aspect ratio
+            }
+            // Redraw with new dimensions
+            this.draw();
         },
         calculate() {
             this.calculateSnappedPoints();
@@ -213,11 +264,22 @@ function bridgePlanner() {
             ctx.stroke();
             // Draw vertical cables at each snapping point
             this.setStrokeStyle(ctx, '#888888', 1.5);
-            this.snappedPoints.forEach(point => {
+            // Calculate intelligent label spacing
+            // Reduced from 40 to 18 pixels because labels are rotated 75 degrees
+            // At 75 degrees, labels are nearly vertical and take up much less horizontal space
+            const minLabelSpacing = 18; // minimum pixels between labels for 75-degree rotated text
+            const canvasWidth = toCanvasX(L) - toCanvasX(0);
+            const availableSpacing = canvasWidth / this.snappedPoints.length;
+            const labelSkip = Math.max(1, Math.ceil(minLabelSpacing / availableSpacing));
+            this.snappedPoints.forEach((point, index) => {
                 const cx = toCanvasX(point[0]);
                 this.drawVerticalLine(ctx, cx, toCanvasY(point[1]), toCanvasY(0));
-                // Draw x-axis label at each snapping point, positioned just below the ground line
-                this.drawLabel(ctx, point[0] + 'm', cx, toCanvasY(0) + 15);
+                // Only draw label if enough spacing, or first/last point
+                const shouldDrawLabel = index % labelSkip === 0 ||
+                    index === this.snappedPoints.length - 1;
+                if (shouldDrawLabel) {
+                    this.drawLabel(ctx, point[0] + 'm', cx, toCanvasY(0) + 20, 'center', 75);
+                }
             });
             // Draw ideal parabola
             this.setStrokeStyle(ctx, '#4CAF50', 2);
